@@ -1,0 +1,84 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* ── Brand accent ──────────────────────────────────────────────────
+     Change --accent to any colour; all derived tokens update automatically.
+  ───────────────────────────────────────────────────────────────────── */
+  --accent: #2056ca;
+
+  /* Slightly lighter accent — used for hover states on accent buttons.
+     color-mix(in oklch, …) perceptually blends toward white by 12 %. */
+  --accent-hover: color-mix(in oklch, var(--accent), white 12%);
+
+  /* Very light tint of accent — backgrounds, subtle fills. */
+  --accent-tint: color-mix(in srgb, var(--accent) 10%, white);
+
+  /* Transparent glow — box-shadow / outline effects. */
+  --accent-glow: color-mix(in srgb, var(--accent) 22%, transparent);
+
+  /* Auto-contrasting text colour for elements placed ON the accent.
+     Uses CSS relative-colour (oklch):
+       – if accent lightness < 0.60 → white text (dark accent)
+       – if accent lightness ≥ 0.60 → black text (bright accent)
+     Supported in Chrome 119+, Firefox 128+, Safari 17+. */
+  --on-accent: oklch(from var(--accent) clamp(0, calc((0.6 - l) * 1000), 1) 0 0);
+
+  /* ── Neutrals ───────────────────────────────────────────────────── */
+  --dark:     #0A0A0A;
+  --dark-2:   #111111;
+  --dark-3:   #1a1a1a;
+  --white:    #FFFFFF;
+  --gray-100: #F8F8F8;
+  --gray-200: #F0F0F0;
+  --gray-300: #E0E0E0;
+  --gray-500: #888888;
+  --gray-700: #444444;
+
+  --font-main: 'Space Grotesk', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-main);
+  background: var(--white);
+  color: var(--dark);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  font-family: var(--font-main);
+  border: none;
+  outline: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 16px;
+  }
+}
