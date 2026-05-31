@@ -1,9 +1,12 @@
 ﻿<template>
   <header class="navbar" :class="{ scrolled: isScrolled }">
+    <!-- Scroll progress indicator -->
+    <div class="nav-progress">
+      <div class="nav-progress-bar" :style="{ transform: `scaleX(${scrollProgress / 100})` }"></div>
+    </div>
     <div class="container nav-inner">
       <RouterLink to="/" class="logo">
-        CER<sup>©</sup>
-        <span class="logo-full">Caspian Engineering &amp; Research</span>
+        <img src="/images/logo.svg" alt="CER — Caspian Engineering &amp; Research" class="logo-img" />
       </RouterLink>
 
       <nav class="nav-links" :class="{ open: menuOpen }">
@@ -43,8 +46,9 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import { useLanguage } from '../composables/useLanguage.js'
 
 const { currentLang, setLang, t } = useLanguage()
-const isScrolled = ref(false)
-const menuOpen = ref(false)
+const isScrolled     = ref(false)
+const menuOpen       = ref(false)
+const scrollProgress = ref(0)
 
 const langs = [
   { code: 'en', label: 'EN' },
@@ -53,10 +57,13 @@ const langs = [
 ]
 
 function handleScroll() {
-  isScrolled.value = window.scrollY > 20
+  const y   = window.scrollY
+  const max = document.documentElement.scrollHeight - window.innerHeight
+  isScrolled.value     = y > 20
+  scrollProgress.value = max > 0 ? (y / max) * 100 : 0
 }
 
-onMounted(() => window.addEventListener('scroll', handleScroll))
+onMounted(() => window.addEventListener('scroll', handleScroll, { passive: true }))
 onUnmounted(() => window.removeEventListener('scroll', handleScroll))
 </script>
 
@@ -67,14 +74,38 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
   left: 0;
   right: 0;
   z-index: 1000;
-  background: rgba(255, 255, 255, 0.97);
+  background: rgba(255, 255, 255, 0.75);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
   border-bottom: 1px solid transparent;
-  transition: border-color 0.3s, box-shadow 0.3s;
+  transition: border-color 0.4s, box-shadow 0.4s, background 0.4s;
 }
 
 .navbar.scrolled {
-  border-bottom-color: #E8E8E8;
-  box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+  background: rgba(255, 255, 255, 0.92);
+  border-bottom-color: rgba(0,0,0,0.07);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.06), 0 8px 32px rgba(0,0,0,0.05);
+}
+
+/* ── Scroll progress ─────────────────────────────────────────────────── */
+.nav-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: transparent;
+  overflow: hidden;
+}
+
+.nav-progress-bar {
+  height: 100%;
+  width: 100%;
+  background: var(--accent);
+  transform-origin: left center;
+  transform: scaleX(0);
+  transition: transform 0.1s linear;
+  will-change: transform;
 }
 
 .nav-inner {
@@ -85,29 +116,15 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
 }
 
 .logo {
-  font-size: 20px;
-  font-weight: 700;
-  letter-spacing: -0.5px;
-  color: var(--dark);
-  white-space: nowrap;
   display: flex;
-  align-items: baseline;
-  gap: 4px;
+  align-items: center;
   flex-shrink: 0;
 }
 
-.logo sup {
-  font-size: 9px;
-  top: -6px;
-  position: relative;
-}
-
-.logo-full {
-  font-size: 11px;
-  font-weight: 400;
-  color: var(--gray-500);
-  letter-spacing: 0;
-  display: none;
+.logo-img {
+  height: 36px;
+  width: auto;
+  display: block;
 }
 
 @media (min-width: 1100px) {

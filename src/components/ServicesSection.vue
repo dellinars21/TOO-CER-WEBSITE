@@ -1,11 +1,12 @@
 ﻿<template>
-  <section class="services-sec">
+  <section class="services-sec" ref="sectionRef">
     <div class="services-inner">
       <div class="services-bg">
         <img
           src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1400&q=80"
           alt="Engineering team on site"
           class="services-img"
+          ref="imgRef"
         />
         <div class="services-overlay"></div>
       </div>
@@ -40,11 +41,15 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 import { useLanguage } from '../composables/useLanguage.js'
+import { gsap, ease, ScrollTrigger } from '../composables/useScrollAnimation.js'
 
 const { t, currentLang } = useLanguage()
 const currentSlide = ref(2)
+const sectionRef = ref(null)
+const imgRef = ref(null)
+let ctx
 
 const slides = computed(() => [
   {
@@ -106,6 +111,49 @@ function next() {
   if (currentSlide.value < 4) currentSlide.value++
   else currentSlide.value = 1
 }
+
+watch(currentSlide, () => {
+  gsap.fromTo('.services-title',
+    { opacity: 0, y: 22, filter: 'blur(5px)' },
+    { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.5, ease: ease.out, clearProps: 'filter' }
+  )
+  gsap.fromTo('.services-desc',
+    { opacity: 0, y: 16 },
+    { opacity: 1, y: 0, duration: 0.5, delay: 0.06, ease: ease.out }
+  )
+})
+
+onMounted(() => {
+  ctx = gsap.context(() => {
+    gsap.from('.services-top', {
+      opacity: 0, y: 24, duration: 0.7, ease: ease.out,
+      scrollTrigger: { trigger: sectionRef.value, start: 'top 80%', once: true }
+    })
+    gsap.from('.services-main', {
+      opacity: 0, y: 36, filter: 'blur(8px)', duration: 0.85, delay: 0.12,
+      ease: ease.out, clearProps: 'filter',
+      scrollTrigger: { trigger: sectionRef.value, start: 'top 80%', once: true }
+    })
+    gsap.from('.services-nav', {
+      opacity: 0, y: 20, duration: 0.6, delay: 0.25, ease: ease.out,
+      scrollTrigger: { trigger: sectionRef.value, start: 'top 80%', once: true }
+    })
+
+    // Background parallax
+    gsap.to(imgRef.value, {
+      yPercent: 14,
+      ease: ease.none,
+      scrollTrigger: {
+        trigger: sectionRef.value,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: 1.5,
+      }
+    })
+  }, sectionRef.value)
+})
+
+onUnmounted(() => ctx?.revert())
 </script>
 
 <style scoped>
@@ -129,9 +177,10 @@ function next() {
 
 .services-img {
   width: 100%;
-  height: 100%;
+  height: 120%;
   object-fit: cover;
   object-position: center 30%;
+  will-change: transform;
 }
 
 .services-overlay {

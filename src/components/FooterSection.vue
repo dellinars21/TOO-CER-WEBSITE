@@ -1,5 +1,5 @@
 ﻿<template>
-  <footer class="footer">
+  <footer class="footer" ref="footerRef">
     <div class="footer-top">
       <div class="container footer-top-inner">
         <div class="footer-tagline">
@@ -76,8 +76,37 @@
 </template>
 
 <script setup>
+import { ref, onMounted, onUnmounted } from 'vue'
 import { useLanguage } from '../composables/useLanguage.js'
+import { gsap, ease } from '../composables/useScrollAnimation.js'
+
 const { t } = useLanguage()
+const footerRef = ref(null)
+let ctx
+
+onMounted(() => {
+  ctx = gsap.context(() => {
+    gsap.from('.footer-tagline', {
+      opacity: 0, y: 32, duration: 0.8, ease: ease.out,
+      scrollTrigger: { trigger: '.footer-top', start: 'top 88%', once: true }
+    })
+    gsap.from('.footer-col', {
+      opacity: 0, y: 22, duration: 0.65, stagger: 0.09, delay: 0.1, ease: ease.out,
+      scrollTrigger: { trigger: '.footer-top', start: 'top 88%', once: true }
+    })
+    gsap.from('.footer-summary', {
+      opacity: 0, y: 18, duration: 0.7, ease: ease.out,
+      scrollTrigger: { trigger: '.footer-mid', start: 'top 90%', once: true }
+    })
+    gsap.from('.footer-wordmark', {
+      opacity: 0, scale: 0.55, filter: 'blur(24px)', duration: 1.3,
+      ease: ease.out, clearProps: 'filter',
+      scrollTrigger: { trigger: '.footer-wordmark-wrap', start: 'top 88%', once: true }
+    })
+  }, footerRef.value)
+})
+
+onUnmounted(() => ctx?.revert())
 </script>
 
 <style scoped>
@@ -202,6 +231,7 @@ const { t } = useLanguage()
   padding: 0 24px;
   text-align: center;
   margin-top: -10px;
+  will-change: transform, opacity, filter;
 }
 
 .footer-bottom {

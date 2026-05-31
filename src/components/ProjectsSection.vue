@@ -1,5 +1,5 @@
 ﻿<template>
-  <section class="projects-sec">
+  <section class="projects-sec" ref="sectionRef">
     <div class="container">
       <div class="projects-grid">
 
@@ -114,8 +114,49 @@
 </template>
 
 <script setup>
+import { ref, onMounted, onUnmounted } from 'vue'
 import { useLanguage } from '../composables/useLanguage.js'
+import { gsap, ease } from '../composables/useScrollAnimation.js'
+
 const { t } = useLanguage()
+const sectionRef = ref(null)
+let ctx
+
+onMounted(() => {
+  ctx = gsap.context(() => {
+    // Left column sequence
+    gsap.from('.projects-left .lime-badge', {
+      opacity: 0, scale: 0.85, duration: 0.55, ease: ease.out,
+      scrollTrigger: { trigger: sectionRef.value, start: 'top 82%', once: true }
+    })
+    gsap.from('.projects-title', {
+      opacity: 0, y: 40, filter: 'blur(10px)', duration: 0.95, delay: 0.1,
+      ease: ease.out, clearProps: 'filter',
+      scrollTrigger: { trigger: sectionRef.value, start: 'top 82%', once: true }
+    })
+    gsap.from('.projects-desc', {
+      opacity: 0, y: 22, duration: 0.7, delay: 0.25, ease: ease.out,
+      scrollTrigger: { trigger: sectionRef.value, start: 'top 82%', once: true }
+    })
+    gsap.from('.project-thumb', {
+      opacity: 0, scale: 0.82, y: 24, duration: 0.8, stagger: 0.1, delay: 0.38,
+      ease: ease.out,
+      scrollTrigger: { trigger: sectionRef.value, start: 'top 82%', once: true }
+    })
+
+    // Right column
+    gsap.from('.project-featured', {
+      opacity: 0, y: 52, scale: 0.94, duration: 0.95, ease: ease.out,
+      scrollTrigger: { trigger: '.projects-right', start: 'top 84%', once: true }
+    })
+    gsap.from('.project-row-card', {
+      opacity: 0, y: 30, duration: 0.7, stagger: 0.1, delay: 0.15, ease: ease.out,
+      scrollTrigger: { trigger: '.projects-right', start: 'top 84%', once: true }
+    })
+  }, sectionRef.value)
+})
+
+onUnmounted(() => ctx?.revert())
 </script>
 
 <style scoped>

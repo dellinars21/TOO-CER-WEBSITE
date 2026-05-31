@@ -1,5 +1,5 @@
 ﻿<template>
-  <section class="expertise-sec">
+  <section class="expertise-sec" ref="sectionRef">
     <div class="container">
       <div class="expertise-header">
         <span class="section-badge lime-badge">
@@ -161,8 +161,52 @@
 </template>
 
 <script setup>
+import { ref, onMounted, onUnmounted } from 'vue'
 import { useLanguage } from '../composables/useLanguage.js'
+import { gsap, ease } from '../composables/useScrollAnimation.js'
+
 const { t } = useLanguage()
+const sectionRef = ref(null)
+let ctx
+
+onMounted(() => {
+  ctx = gsap.context(() => {
+    // Header sequence
+    gsap.from('.expertise-header .lime-badge', {
+      opacity: 0, scale: 0.85, duration: 0.55, ease: ease.out,
+      scrollTrigger: { trigger: sectionRef.value, start: 'top 82%', once: true }
+    })
+    gsap.from('.expertise-title', {
+      opacity: 0, y: 34, filter: 'blur(10px)', duration: 0.9, delay: 0.1,
+      ease: ease.out, clearProps: 'filter',
+      scrollTrigger: { trigger: sectionRef.value, start: 'top 82%', once: true }
+    })
+    gsap.from('.expertise-sub', {
+      opacity: 0, y: 20, duration: 0.7, delay: 0.22, ease: ease.out,
+      scrollTrigger: { trigger: sectionRef.value, start: 'top 82%', once: true }
+    })
+
+    // Feature cards slide in from left
+    gsap.from('.feature-card', {
+      opacity: 0, x: -36, duration: 0.75, stagger: 0.14, ease: ease.out,
+      scrollTrigger: { trigger: '.expertise-features', start: 'top 85%', once: true }
+    })
+
+    // Center cards stagger up
+    gsap.from(['.years-card', '.supervision-card', '.expertise-cta'], {
+      opacity: 0, y: 32, scale: 0.96, duration: 0.75, stagger: 0.12, ease: ease.out,
+      scrollTrigger: { trigger: '.expertise-center', start: 'top 85%', once: true }
+    })
+
+    // Diagram fade + slide
+    gsap.from('.rig-diagram', {
+      opacity: 0, scale: 0.88, y: 44, duration: 1.1, ease: ease.out,
+      scrollTrigger: { trigger: '.expertise-diagram', start: 'top 85%', once: true }
+    })
+  }, sectionRef.value)
+})
+
+onUnmounted(() => ctx?.revert())
 </script>
 
 <style scoped>

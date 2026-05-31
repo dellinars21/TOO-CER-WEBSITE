@@ -1,11 +1,11 @@
 ﻿<template>
-  <section class="stats-sec">
+  <section class="stats-sec" ref="sectionRef">
     <div class="container stats-grid">
 
       <!-- Card 1: 12 Major Fields — Lime Green -->
       <div class="stat-card stat-lime">
         <div class="stat-card-top">
-          <div class="stat-number">12</div>
+          <div class="stat-number">{{ stat12 }}</div>
           <div class="stat-label">
             {{ t('Major Oil & Gas Fields', 'Крупных нефтегазовых месторождений', 'Ірі мұнай-газ кен орындары') }}
           </div>
@@ -119,7 +119,7 @@
       <div class="stat-card stat-dark">
         <div class="dark-card-inner">
           <div class="dark-stat">
-            <span class="dark-stat-value">20+</span>
+            <span class="dark-stat-value">{{ stat20 }}+</span>
             <span class="dark-stat-label">
               {{ t(
                 'years of oil & gas engineering expertise in the Republic of Kazakhstan',
@@ -169,8 +169,40 @@
 </template>
 
 <script setup>
+import { ref, onMounted, onUnmounted } from 'vue'
 import { useLanguage } from '../composables/useLanguage.js'
+import { gsap, ease } from '../composables/useScrollAnimation.js'
+
 const { t } = useLanguage()
+const sectionRef = ref(null)
+const stat12 = ref(0)
+const stat20 = ref(0)
+let ctx
+
+onMounted(() => {
+  ctx = gsap.context(() => {
+    gsap.from(['.stat-lime', '.stat-white', '.stat-dark'], {
+      opacity: 0, y: 60, scale: 0.94, duration: 0.9, stagger: 0.12, ease: ease.out,
+      scrollTrigger: { trigger: sectionRef.value, start: 'top 82%', once: true }
+    })
+
+    const obj12 = { n: 0 }
+    gsap.to(obj12, {
+      n: 12, duration: 1.6, ease: 'power2.out',
+      onUpdate: () => { stat12.value = Math.round(obj12.n) },
+      scrollTrigger: { trigger: sectionRef.value, start: 'top 78%', once: true }
+    })
+
+    const obj20 = { n: 0 }
+    gsap.to(obj20, {
+      n: 20, duration: 2, ease: 'power2.out',
+      onUpdate: () => { stat20.value = Math.round(obj20.n) },
+      scrollTrigger: { trigger: sectionRef.value, start: 'top 78%', once: true }
+    })
+  }, sectionRef.value)
+})
+
+onUnmounted(() => ctx?.revert())
 </script>
 
 <style scoped>

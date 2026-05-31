@@ -1,5 +1,5 @@
 ﻿<template>
-  <section class="about-sec">
+  <section class="about-sec" ref="sectionRef">
     <div class="container about-inner">
       <div class="about-tag-col">
         <span class="section-badge">{{ t('About Us', 'О компании', 'Компания туралы') }}</span>
@@ -34,8 +34,29 @@
 </template>
 
 <script setup>
+import { ref, onMounted, onUnmounted } from 'vue'
 import { useLanguage } from '../composables/useLanguage.js'
+import { gsap, ease } from '../composables/useScrollAnimation.js'
+
 const { t } = useLanguage()
+const sectionRef = ref(null)
+let ctx
+
+onMounted(() => {
+  ctx = gsap.context(() => {
+    gsap.from('.about-tag-col .section-badge', {
+      opacity: 0, x: -24, duration: 0.65, ease: ease.out,
+      scrollTrigger: { trigger: sectionRef.value, start: 'top 86%', once: true }
+    })
+    gsap.from('.about-headline', {
+      opacity: 0, y: 36, filter: 'blur(10px)', duration: 1.05, delay: 0.1,
+      ease: ease.out, clearProps: 'filter',
+      scrollTrigger: { trigger: sectionRef.value, start: 'top 86%', once: true }
+    })
+  }, sectionRef.value)
+})
+
+onUnmounted(() => ctx?.revert())
 </script>
 
 <style scoped>

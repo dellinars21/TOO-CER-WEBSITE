@@ -2,8 +2,10 @@
   <main>
     <HeroSection />
     <PartnersSection />
+    <TrustSection />
     <AboutSection />
     <StatsSection />
+    <KazakhstanMap />
     <TechnologySection />
     <ProjectsSection />
     <ServicesSection />
@@ -15,8 +17,10 @@
 <script setup>
 import HeroSection from '../components/HeroSection.vue'
 import PartnersSection from '../components/PartnersSection.vue'
+import TrustSection from '../components/TrustSection.vue'
 import AboutSection from '../components/AboutSection.vue'
 import StatsSection from '../components/StatsSection.vue'
+import KazakhstanMap from '../components/KazakhstanMap.vue'
 import TechnologySection from '../components/TechnologySection.vue'
 import ProjectsSection from '../components/ProjectsSection.vue'
 import ServicesSection from '../components/ServicesSection.vue'

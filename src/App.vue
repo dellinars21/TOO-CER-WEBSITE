@@ -8,7 +8,16 @@
 </template>
 
 <script setup>
+import { watch } from 'vue'
+import { useRoute } from 'vue-router'
+import { ScrollTrigger } from './composables/useScrollAnimation.js'
 import NavBar from './components/NavBar.vue'
+
+const route = useRoute()
+watch(() => route.path, () => {
+  // Let Vue finish rendering the new page, then refresh ScrollTrigger
+  setTimeout(() => ScrollTrigger.refresh(), 100)
+})
 </script>
 
 <style>

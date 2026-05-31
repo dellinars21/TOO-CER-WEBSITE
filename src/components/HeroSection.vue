@@ -1,21 +1,22 @@
-﻿<template>
-  <section class="hero">
+<template>
+  <section class="hero" ref="heroRef">
     <div class="hero-bg">
       <img
         src="/images/hero background.webp"
         alt="Offshore oil platform"
         class="hero-img"
+        ref="imgRef"
       />
       <div class="hero-overlay"></div>
     </div>
 
     <div class="container hero-content">
-      <div class="hero-brand">
-        <h1>CER<sup>©</sup></h1>
-        <p class="hero-brand-sub">{{ t('Caspian Engineering &amp; Research', 'Каспийские Инжиниринг и Исследования', 'Каспий Инжиниринг және Зерттеулер') }}</p>
+      <div class="hero-brand" ref="brandRef">
+        <h1 ref="titleRef">CER<sup>©</sup></h1>
+        <p class="hero-brand-sub">{{ t('Caspian Engineering &amp; Research', 'Caspian Engineering &amp; Research', 'Caspian Engineering &amp; Research') }}</p>
       </div>
 
-      <div class="hero-right">
+      <div class="hero-right" ref="rightRef">
         <p class="hero-desc">
           {{ t(
             'One of the leading engineering and consulting companies in the oil and gas sector of Kazakhstan — providing engineering design, environmental support, and consulting services since 2003.',
@@ -37,8 +38,92 @@
 </template>
 
 <script setup>
+import { ref, onMounted, onUnmounted } from 'vue'
 import { useLanguage } from '../composables/useLanguage.js'
+import { gsap, ScrollTrigger, splitChars, ease } from '../composables/useScrollAnimation.js'
+
 const { t } = useLanguage()
+
+const heroRef  = ref(null)
+const imgRef   = ref(null)
+const titleRef = ref(null)
+const rightRef = ref(null)
+let ctx
+
+onMounted(() => {
+  ctx = gsap.context(() => {
+    // ── 1. Character-level blur-in for "CER©" ───────────────────────────
+    const chars = splitChars(titleRef.value)
+
+    gsap.set(chars, { opacity: 0, y: 50, filter: 'blur(12px)' })
+    gsap.to(chars, {
+      opacity: 1,
+      y: 0,
+      filter: 'blur(0px)',
+      duration: 0.9,
+      stagger: 0.06,
+      ease: ease.out,
+      delay: 0.15,
+      clearProps: 'filter,transform',
+    })
+
+    // ── 2. Sub-brand line ────────────────────────────────────────────────
+    gsap.from('.hero-brand-sub', {
+      opacity: 0,
+      y: 14,
+      duration: 0.7,
+      delay: 0.55,
+      ease: ease.out,
+    })
+
+    // ── 3. Right column: desc + CTA ─────────────────────────────────────
+    gsap.from(rightRef.value.querySelector('.hero-desc'), {
+      opacity: 0,
+      y: 22,
+      filter: 'blur(4px)',
+      duration: 0.75,
+      delay: 0.65,
+      ease: ease.out,
+      clearProps: 'filter',
+    })
+
+    gsap.from(rightRef.value.querySelector('.btn-hero'), {
+      opacity: 0,
+      y: 18,
+      scale: 0.92,
+      duration: 0.7,
+      delay: 0.82,
+      ease: ease.out,
+    })
+
+    // ── 4. Parallax — background image moves slower than viewport ────────
+    gsap.to(imgRef.value, {
+      yPercent: 22,
+      ease: ease.none,
+      scrollTrigger: {
+        trigger: heroRef.value,
+        start: 'top top',
+        end: 'bottom top',
+        scrub: 1.8,
+      },
+    })
+
+    // ── 5. Hero content fades out as you scroll away ─────────────────────
+    gsap.to('.hero-content', {
+      opacity: 0,
+      y: -30,
+      ease: ease.none,
+      scrollTrigger: {
+        trigger: heroRef.value,
+        start: 'center top',
+        end: 'bottom top',
+        scrub: 1.2,
+      },
+    })
+  }, heroRef.value)
+})
+
+onUnmounted(() => ctx?.revert())
 </script>
 
 <style scoped>
@@ -61,9 +146,10 @@ const { t } = useLanguage()
 
 .hero-img {
   width: 100%;
-  height: 100%;
+  height: 115%;          /* extra height for parallax travel */
   object-fit: cover;
   object-position: center 40%;
+  will-change: transform;
 }
 
 .hero-overlay {
@@ -85,6 +171,7 @@ const { t } = useLanguage()
   justify-content: space-between;
   width: 100%;
   gap: 40px;
+  will-change: transform, opacity;
 }
 
 .hero-brand h1 {
@@ -93,6 +180,7 @@ const { t } = useLanguage()
   color: var(--white);
   letter-spacing: -2px;
   line-height: 0.9;
+  will-change: transform, opacity, filter;
 }
 
 .hero-brand h1 sup {
@@ -134,12 +222,12 @@ const { t } = useLanguage()
   font-weight: 600;
   border-radius: 100px;
   width: fit-content;
-  transition: background 0.2s, transform 0.2s;
+  transition: background 0.2s, transform 0.15s;
 }
 
 .btn-hero:hover {
   background: var(--accent-hover);
-  transform: translateY(-1px);
+  transform: translateY(-2px) scale(1.02);
 }
 
 .arrow-icon {
@@ -151,6 +239,11 @@ const { t } = useLanguage()
   background: var(--on-accent);
   border-radius: 50%;
   color: var(--accent);
+  transition: transform 0.2s;
+}
+
+.btn-hero:hover .arrow-icon {
+  transform: rotate(45deg) scale(1.1);
 }
 
 @media (max-width: 768px) {
