@@ -104,7 +104,7 @@ onMounted(() => {
         trigger: heroRef.value,
         start: 'top top',
         end: 'bottom top',
-        scrub: 1.8,
+        scrub: 0.6,
       },
     })
 

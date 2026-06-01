@@ -7,6 +7,7 @@
     <StatsSection />
     <KazakhstanMap />
     <TechnologySection />
+    <AwardsSection />
     <ProjectsSection />
     <ServicesSection />
     <TestimonialsSection />
@@ -22,6 +23,7 @@ import AboutSection from '../components/AboutSection.vue'
 import StatsSection from '../components/StatsSection.vue'
 import KazakhstanMap from '../components/KazakhstanMap.vue'
 import TechnologySection from '../components/TechnologySection.vue'
+import AwardsSection from '../components/AwardsSection.vue'
 import ProjectsSection from '../components/ProjectsSection.vue'
 import ServicesSection from '../components/ServicesSection.vue'
 import TestimonialsSection from '../components/TestimonialsSection.vue'

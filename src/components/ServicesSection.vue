@@ -139,17 +139,6 @@ onMounted(() => {
       scrollTrigger: { trigger: sectionRef.value, start: 'top 80%', once: true }
     })
 
-    // Background parallax
-    gsap.to(imgRef.value, {
-      yPercent: 14,
-      ease: ease.none,
-      scrollTrigger: {
-        trigger: sectionRef.value,
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: 1.5,
-      }
-    })
   }, sectionRef.value)
 })
 
@@ -177,10 +166,9 @@ onUnmounted(() => ctx?.revert())
 
 .services-img {
   width: 100%;
-  height: 120%;
+  height: 100%;
   object-fit: cover;
   object-position: center 30%;
-  will-change: transform;
 }
 
 .services-overlay {
