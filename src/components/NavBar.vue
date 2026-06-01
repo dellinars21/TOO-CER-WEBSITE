@@ -232,10 +232,19 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
 .hamburger {
   display: none;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 5px;
+  width: 44px;
+  height: 44px;
   background: none;
-  padding: 4px;
+  border: none;
+  padding: 0;
   margin-left: auto;
+  margin-right: -10px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 .hamburger span {
@@ -244,6 +253,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
   height: 2px;
   background: var(--dark);
   transition: transform 0.3s, opacity 0.3s;
+  pointer-events: none;
 }
 
 .hamburger span:nth-child(1).open { transform: translateY(7px) rotate(45deg); }
