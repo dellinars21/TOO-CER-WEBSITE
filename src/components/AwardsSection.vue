@@ -16,6 +16,7 @@
 
           <div class="awards-carousel">
             <button
+              ref="prevSlotRef"
               class="award-slot award-slot--side award-slot--prev"
               :aria-label="t('Previous', 'Предыдущий', 'Алдыңғы')"
               @click="prev"
@@ -23,7 +24,7 @@
               <img :src="`/images/rewards/${prevItem.file}`" :alt="t(prevItem.nameEn, prevItem.nameRu, prevItem.nameKz)" />
             </button>
 
-            <div class="award-slot award-slot--center" @click="openLightbox(currentItem)">
+            <div ref="centerSlotRef" class="award-slot award-slot--center" @click="openLightbox(currentItem)">
               <img :src="`/images/rewards/${currentItem.file}`" :alt="t(currentItem.nameEn, currentItem.nameRu, currentItem.nameKz)" />
               <div class="award-center-overlay">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
@@ -33,6 +34,7 @@
             </div>
 
             <button
+              ref="nextSlotRef"
               class="award-slot award-slot--side award-slot--next"
               :aria-label="t('Next', 'Следующий', 'Келесі')"
               @click="next"
@@ -124,13 +126,71 @@ const items = [
 
 const index = ref(0)
 const n = items.length
+const isAnimating = ref(false)
 
 const currentItem = computed(() => items[index.value])
 const prevItem = computed(() => items[(index.value - 1 + n) % n])
 const nextItem = computed(() => items[(index.value + 1) % n])
 
-function next() { index.value = (index.value + 1) % n }
-function prev() { index.value = (index.value - 1 + n) % n }
+const centerSlotRef = ref(null)
+const prevSlotRef = ref(null)
+const nextSlotRef = ref(null)
+
+function navigate(dir) {
+  if (isAnimating.value) return
+  const center = centerSlotRef.value
+  const left   = prevSlotRef.value
+  const right  = nextSlotRef.value
+  if (!center || !left || !right) return
+
+  isAnimating.value = true
+
+  // Kill any in-flight tweens on these targets so a freshly-mounted scroll-in
+  // animation (or a previous nav) can't fight the new timeline.
+  gsap.killTweensOf([center, left, right])
+
+  const tl = gsap.timeline({
+    defaults: { force3D: true, overwrite: 'auto' },
+    onComplete: () => { isAnimating.value = false },
+  })
+
+  // ── Phase 1: animate OUT (center slides in travel direction, sides fade)
+  tl.to(center, {
+    xPercent: dir * -60, opacity: 0, scale: 0.9,
+    duration: 0.32, ease: 'power2.in',
+  }, 0)
+  tl.to([left, right], {
+    opacity: 0, scale: 0.86,
+    duration: 0.26, ease: 'power2.in',
+  }, 0)
+
+  // ── Phase 2: swap state while elements are invisible.
+  // GSAP runs callbacks during its own ticker, BEFORE the paint of the same
+  // frame. Vue schedules the DOM update as a microtask — which runs after this
+  // callback but before paint, so the new img srcs land before the browser
+  // composites this frame. We then snap (synchronously) the elements to the
+  // "enter-from" pose so nothing is ever painted at the wrong position.
+  tl.add(() => {
+    index.value = (index.value + dir + n) % n
+    gsap.set(center, { xPercent: dir * 60, opacity: 0, scale: 0.92 })
+    gsap.set([left, right], { opacity: 0, scale: 0.86 })
+  })
+
+  // ── Phase 3: animate IN
+  tl.to(center, {
+    xPercent: 0, opacity: 1, scale: 1,
+    duration: 0.46, ease: 'power3.out',
+    clearProps: 'transform,opacity',
+  })
+  tl.to([left, right], {
+    opacity: 0.55, scale: 0.92,
+    duration: 0.36, ease: 'power2.out',
+    clearProps: 'transform,opacity',
+  }, '<0.04')
+}
+
+function next() { navigate(1) }
+function prev() { navigate(-1) }
 
 // Lightbox
 const lightboxSrc = ref(null)
@@ -218,6 +278,7 @@ onUnmounted(() => {
   gap: 18px;
   align-items: center;
   justify-items: center;
+  position: relative;
 }
 
 .award-slot {
@@ -229,8 +290,11 @@ onUnmounted(() => {
   overflow: hidden;
   padding: 0;
   cursor: pointer;
-  transition: border-color 0.25s, transform 0.4s cubic-bezier(.2,.7,.2,1), box-shadow 0.25s;
+  transition: border-color 0.25s, box-shadow 0.25s;
   display: block;
+  will-change: transform, opacity;
+  transform-origin: center center;
+  backface-visibility: hidden;
 }
 
 .award-slot img {
@@ -244,6 +308,7 @@ onUnmounted(() => {
   aspect-ratio: 3 / 4;
   opacity: 0.55;
   transform: scale(0.92);
+  z-index: 1;
 }
 
 .award-slot--side:hover {
@@ -256,6 +321,7 @@ onUnmounted(() => {
   aspect-ratio: 3 / 4;
   cursor: zoom-in;
   box-shadow: 0 12px 36px rgba(0,0,0,0.25);
+  z-index: 2;
 }
 
 .award-slot--center:hover {
