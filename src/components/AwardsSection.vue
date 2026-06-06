@@ -21,11 +21,11 @@
               :aria-label="t('Previous', 'Предыдущий', 'Алдыңғы')"
               @click="prev"
             >
-              <img :src="`/images/rewards/${prevItem.file}`" :alt="t(prevItem.nameEn, prevItem.nameRu, prevItem.nameKz)" />
+              <img :src="`./images/rewards/${prevItem.file}`" :alt="t(prevItem.nameEn, prevItem.nameRu, prevItem.nameKz)" />
             </button>
 
             <div ref="centerSlotRef" class="award-slot award-slot--center" @click="openLightbox(currentItem)">
-              <img :src="`/images/rewards/${currentItem.file}`" :alt="t(currentItem.nameEn, currentItem.nameRu, currentItem.nameKz)" />
+              <img :src="`./images/rewards/${currentItem.file}`" :alt="t(currentItem.nameEn, currentItem.nameRu, currentItem.nameKz)" />
               <div class="award-center-overlay">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
                   <path d="M15 3H21V9M21 3L9 15M10 5H3V21H19V14" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
@@ -39,7 +39,7 @@
               :aria-label="t('Next', 'Следующий', 'Келесі')"
               @click="next"
             >
-              <img :src="`/images/rewards/${nextItem.file}`" :alt="t(nextItem.nameEn, nextItem.nameRu, nextItem.nameKz)" />
+              <img :src="`./images/rewards/${nextItem.file}`" :alt="t(nextItem.nameEn, nextItem.nameRu, nextItem.nameKz)" />
             </button>
           </div>
 
@@ -201,7 +201,7 @@ function prev() { navigate(-1) }
 // Lightbox
 const lightboxSrc = ref(null)
 function openLightbox(item) {
-  lightboxSrc.value = `/images/rewards/${item.file}`
+  lightboxSrc.value = `./images/rewards/${item.file}`
 }
 
 function onKey(e) {

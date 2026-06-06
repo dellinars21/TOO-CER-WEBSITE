@@ -6,7 +6,7 @@
     </div>
     <div class="container nav-inner">
       <RouterLink to="/" class="logo">
-        <img src="/images/logo.svg" alt="CER — Caspian Engineering &amp; Research" class="logo-img" />
+        <img src="./images/logo.svg" alt="CER — Caspian Engineering &amp; Research" class="logo-img" />
       </RouterLink>
 
       <nav class="nav-links" :class="{ open: menuOpen }">

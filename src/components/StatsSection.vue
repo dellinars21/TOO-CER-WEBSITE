@@ -10,7 +10,7 @@
             <div class="stat-primary-label">
               {{ t('12 Major Oil & Gas Fields', '12 Крупных нефтегазовых месторождений', '12 Ірі мұнай-газ кен орындары') }}
             </div>
-            <div class="stat-sub-label">Tengiz, Kashagan + 9</div>
+            <div class="stat-sub-label">Tengiz, Kashagan, Karachaganak, Northern Buzachi, CPC + 9</div>
           </div>
           <RouterLink to="/portfolio" class="portfolio-btn">
             {{ t('Portfolio', 'Портфолио', 'Портфолио') }}

@@ -3,7 +3,7 @@
     <div class="services-inner">
       <div class="services-bg">
         <img
-          src="/images/biggest_oil_and_gas_companies.jpg"
+          src="./images/biggest_oil_and_gas_companies.jpg"
           alt="Engineering team on site"
           class="services-img"
           ref="imgRef"

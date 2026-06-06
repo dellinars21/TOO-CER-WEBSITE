@@ -24,7 +24,7 @@
       <div class="container about-story-grid">
         <div class="story-img-wrap">
           <img
-            src="/images/company.jpg"
+            src="./images/company.jpg"
             alt="Offshore platform"
             class="story-img"
           />
@@ -84,7 +84,7 @@
         </div>
         <div class="partners-grid">
           <div class="partner-item" v-for="p in partners" :key="p.file" :title="p.name">
-            <img :src="`/images/partners/${p.file}`" :alt="p.name" class="partner-logo" />
+            <img :src="`./images/partners/${p.file}`" :alt="p.name" class="partner-logo" />
           </div>
         </div>
       </div>
@@ -118,10 +118,10 @@
             class="doc-card"
             v-for="d in licenses"
             :key="d.file"
-            @click="openLightbox(`/images/licenses/${d.file}`)"
+            @click="openLightbox(`./images/licenses/${d.file}`)"
           >
             <div class="doc-thumb-wrap">
-              <img :src="`/images/licenses/${d.file}`" :alt="t(d.nameEn, d.nameRu, d.nameKz)" class="doc-thumb" />
+              <img :src="`./images/licenses/${d.file}`" :alt="t(d.nameEn, d.nameRu, d.nameKz)" class="doc-thumb" />
               <div class="doc-overlay">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                   <path d="M15 3H21V9M21 3L9 15M10 5H3V21H19V14" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
@@ -157,10 +157,10 @@
             class="policy-card"
             v-for="p in policyDocs"
             :key="p.file"
-            @click="openLightbox(`/images/company_policy/${p.file}`)"
+            @click="openLightbox(`./images/company_policy/${p.file}`)"
           >
             <div class="doc-thumb-wrap">
-              <img :src="`/images/company_policy/${p.file}`" :alt="t(p.nameEn, p.nameRu, p.nameKz)" class="doc-thumb" />
+              <img :src="`./images/company_policy/${p.file}`" :alt="t(p.nameEn, p.nameRu, p.nameKz)" class="doc-thumb" />
               <div class="doc-overlay">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                   <path d="M15 3H21V9M21 3L9 15M10 5H3V21H19V14" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
@@ -206,10 +206,10 @@
             class="award-card"
             v-for="r in rewardsByTab(activeTab)"
             :key="r.file"
-            @click="openLightbox(`/images/rewards/${r.file}`)"
+            @click="openLightbox(`./images/rewards/${r.file}`)"
           >
             <div class="award-thumb-wrap">
-              <img :src="`/images/rewards/${r.file}`" :alt="t(r.nameEn, r.nameRu, r.nameKz)" class="award-thumb" />
+              <img :src="`./images/rewards/${r.file}`" :alt="t(r.nameEn, r.nameRu, r.nameKz)" class="award-thumb" />
               <div class="doc-overlay">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                   <path d="M15 3H21V9M21 3L9 15M10 5H3V21H19V14" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
@@ -254,7 +254,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import FooterSection from '../components/FooterSection.vue'
 import { useLanguage } from '../composables/useLanguage.js'
 
@@ -265,11 +265,11 @@ const lightboxSrc = ref(null)
 function openLightbox(src) { lightboxSrc.value = src }
 
 // Close lightbox on Escape
-if (typeof window !== 'undefined') {
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') lightboxSrc.value = null
-  })
+function onKeydown(e) {
+  if (e.key === 'Escape') lightboxSrc.value = null
 }
+onMounted(() => window.addEventListener('keydown', onKeydown))
+onUnmounted(() => window.removeEventListener('keydown', onKeydown))
 
 // ── DATA ────────────────────────────────────────────────────────────────────
 

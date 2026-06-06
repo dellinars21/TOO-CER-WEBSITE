@@ -195,10 +195,10 @@ const projects = [
     scope: { en: 'Design & Author Supervision', ru: 'Проектирование и Авторский надзор', kz: 'Жобалау және Авторлық қадағалау' },
     category: { en: 'Offshore', ru: 'Морские', kz: 'Теңіздегі' },
     type: 'offshore',
-    img: '/images/objects/Месторождение Кашаган.jpg',
+    img: './images/objects/Месторождение Кашаган.jpg',
     clients: [
-      { name: 'NCOC N.V.', logo: '/images/clients/ncoc.png' },
-      { name: 'Consafe McNulty JV', logo: '/images/clients/consafe-mcnulty.png' }
+      { name: 'NCOC N.V.', logo: './images/clients/ncoc.png' },
+      { name: 'Consafe McNulty JV', logo: './images/clients/consafe-mcnulty.png' }
     ],
     details: [
       { en: 'Raw gas injection project at EP stage (2005).', ru: 'Проект закачки сырого газа на стадии ОПР (2005).', kz: 'ТӨӨ кезеңінде шикі газды айдау жобасы (2005).' },
@@ -225,9 +225,9 @@ const projects = [
     scope: { en: 'Consulting & Author Supervision', ru: 'Консалтинг и Авторский надзор', kz: 'Консалтинг және Авторлық қадағалау' },
     category: { en: 'Onshore', ru: 'Наземные', kz: 'Жердегі' },
     type: 'onshore',
-    img: '/images/objects/Месторождение Тенгиз.jpg',
+    img: './images/objects/Месторождение Тенгиз.jpg',
     clients: [
-      { name: 'Tengizchevroil LLP', logo: '/images/clients/tco-tengizchevroil.png' }
+      { name: 'Tengizchevroil LLP', logo: './images/clients/tco-tengizchevroil.png' }
     ],
     details: [
       { en: 'Sulfur storage pilot project (2008).', ru: 'Пилотный проект хранения серы (2008).', kz: 'Күкірт сақтау пилоттық жобасы (2008).' },
@@ -254,9 +254,9 @@ const projects = [
     scope: { en: 'Design, EIA & Author Supervision', ru: 'Проектирование, ОВОС и Авторский надзор', kz: 'Жобалау, ҚОӘБ және Авторлық қадағалау' },
     category: { en: 'Onshore', ru: 'Наземные', kz: 'Жердегі' },
     type: 'onshore',
-    img: '/images/objects/Месторождение Карачаганак.jpg',
+    img: './images/objects/Месторождение Карачаганак.jpg',
     clients: [
-      { name: 'Karachaganak Petroleum Operating B.V.', logo: '/images/clients/karachaganak-petroleum.png' }
+      { name: 'Karachaganak Petroleum Operating B.V.', logo: './images/clients/karachaganak-petroleum.png' }
     ],
     details: [
       { en: 'Commissioning permits for Satellite Station, GPU-2, KPC and pre-plant/industrial zones (2004).', ru: 'Разрешения на ввод в действие Сателлитной станции, УКПГ-2, КПК, Предзаводской и Производственной зон (2004).', kz: 'Сателлиттік стансаны, ГӨҚ-2, КӨК және зауыт алды/өндірістік аймақтарды іске қосуға рұқсаттар (2004).' },
@@ -279,9 +279,9 @@ const projects = [
     scope: { en: 'Detail Design & Field Supervision', ru: 'Рабочая документация и Полевой надзор', kz: 'Жұмыс құжаттамасы және Далалық қадағалау' },
     category: { en: 'Pipeline', ru: 'Трубопроводы', kz: 'Құбыр желілері' },
     type: 'pipeline',
-    img: '/images/objects/КТК Атырау.webp',
+    img: './images/objects/КТК Атырау.webp',
     clients: [
-      { name: 'TechnipFMC', logo: '/images/clients/technipfmc.png' }
+      { name: 'TechnipFMC', logo: './images/clients/technipfmc.png' }
     ],
     details: [
       { en: 'CPC Expansion in RK — Detail design of Atyrau OPS and pipeline 116-204 km (2006-2008).', ru: 'Расширение КТК в РК — Рабочая документация НПС Атырау, трубопровода 116-204 км (2006-2008).', kz: 'ҚР-дағы КТК кеңеюі — Атырау МАС-ы және 116-204 км құбыр жұмыс құжаттамасы (2006-2008).' },
@@ -301,9 +301,9 @@ const projects = [
     scope: { en: 'Design, EIA & Supervision', ru: 'Проектирование, ОВОС и надзор', kz: 'Жобалау, ҚОӘБ және қадағалау' },
     category: { en: 'Onshore', ru: 'Наземные', kz: 'Жердегі' },
     type: 'onshore',
-    img: '/images/objects/Месторождение Дунга.jpg',
+    img: './images/objects/Месторождение Дунга.jpg',
     clients: [
-      { name: 'Maersk Oil Kazakhstan GmbH', logo: '/images/clients/maersk-oil.jpg' }
+      { name: 'Maersk Oil Kazakhstan GmbH', logo: './images/clients/maersk-oil.jpg' }
     ],
     details: [
       { en: 'Project & working documentation incl. EIA for Associated Petroleum Gas treatment at Dunga (2007-2008).', ru: 'Проект и рабочая документация, в т.ч. ОВОС, для объекта «Подготовка ПНГ на месторождении Дунга» (2007-2008).', kz: 'Доңға кен орнындағы ілеспе мұнай газын дайындау нысанының жобалық және жұмыс құжаттамасы (2007-2008).' },
@@ -323,9 +323,9 @@ const projects = [
     scope: { en: 'Field Development & Pipeline Design', ru: 'Обустройство месторождения и проектирование газопровода', kz: 'Кен орнын жайластыру және газ құбырын жобалау' },
     category: { en: 'Pipeline', ru: 'Трубопроводы', kz: 'Құбыр желілері' },
     type: 'pipeline',
-    img: '/images/objects/Месторождение Алибекмола.jpg',
+    img: './images/objects/Месторождение Алибекмола.jpg',
     clients: [
-      { name: 'KazakhOil Aktobe LLP', logo: '/images/clients/kazakhoil-aktobe.png' }
+      { name: 'KazakhOil Aktobe LLP', logo: './images/clients/kazakhoil-aktobe.png' }
     ],
     details: [
       { en: 'Working designs for full field development incl. SPPD, CPGTU (up to 3 mln t/y), auxiliary facilities & GTU; author supervision (2004-2009).', ru: 'Рабочие проекты комплексного обустройства: СППД, ЦППНГ (до 3 млн т/год), вспомогательные объекты, УПТГ; авторский надзор (2004-2009).', kz: 'Кешенді жайластыру жұмыс жобалары: СППД, ЦППНГ (3 млн т/жылға дейін), қосалқы нысандар, УПТГ; авторлық қадағалау (2004-2009).' },
@@ -348,9 +348,9 @@ const projects = [
     scope: { en: 'Concept, Design & Author Supervision', ru: 'Концепция, проектирование и Авторский надзор', kz: 'Тұжырымдама, жобалау және Авторлық қадағалау' },
     category: { en: 'Onshore', ru: 'Наземные', kz: 'Жердегі' },
     type: 'onshore',
-    img: '/images/objects/Месторождение Северные Бузачи.jpg',
+    img: './images/objects/Месторождение Северные Бузачи.jpg',
     clients: [
-      { name: 'Buzachi Operating Ltd.', logo: '/images/clients/buzachi-operating.png' }
+      { name: 'Buzachi Operating Ltd.', logo: './images/clients/buzachi-operating.png' }
     ],
     details: [
       { en: 'Modernization design at EP stage (2004-2006).', ru: 'Проект модернизации системы обустройства на стадии ОПР (2004-2006).', kz: 'ТӨӨ кезеңінде жайластыру жүйесін жаңғырту жобасы (2004-2006).' },
@@ -372,9 +372,9 @@ const projects = [
     scope: { en: 'Design & Author Supervision', ru: 'Проектирование и Авторский надзор', kz: 'Жобалау және Авторлық қадағалау' },
     category: { en: 'Onshore', ru: 'Наземные', kz: 'Жердегі' },
     type: 'onshore',
-    img: '/images/objects/Чинаревское Месторождение.jpg',
+    img: './images/objects/Чинаревское Месторождение.jpg',
     clients: [
-      { name: 'Nostrum Oil & Gas (Zhaikmunai)', logo: '/images/clients/nostrum-oil.png' }
+      { name: 'Nostrum Oil & Gas (Zhaikmunai)', logo: './images/clients/nostrum-oil.png' }
     ],
     details: [
       { en: 'FS for LPG transportation and transshipment (2007).', ru: 'ТЭО транспортировки и перевалки СУГ (2007).', kz: 'СҰГ тасымалдау және ауыстырып тиеу ТЭН (2007).' },
@@ -396,9 +396,9 @@ const projects = [
     scope: { en: 'Design & Working Documentation', ru: 'Проект и Рабочая документация', kz: 'Жоба және жұмыс құжаттамасы' },
     category: { en: 'Onshore', ru: 'Наземные', kz: 'Жердегі' },
     type: 'onshore',
-    img: '/images/objects/Месторождение Западная прорва.jpg',
+    img: './images/objects/Месторождение Западная прорва.jpg',
     clients: [
-      { name: 'KERNEU Limited LLP', logo: '/images/clients/kerneu.png' }
+      { name: 'KERNEU Limited LLP', logo: './images/clients/kerneu.png' }
     ],
     details: [
       { en: 'Project and working documentation: Sulfur removal unit for associated petroleum gas, Prorva Group of Fields GPCU (2014-2018).', ru: 'Проект и рабочая документация «Установка сероочистки ПНГ Прорвинской группы месторождений (УКПГ)» (2014-2018).', kz: '«Прорва тобы кен орындарының ілеспе мұнай газын күкіртсіздендіру қондырғысы (УКПГ)» жобасы және жұмыс құжаттамасы (2014-2018).' }
@@ -416,9 +416,9 @@ const projects = [
     scope: { en: 'Design & Author Supervision', ru: 'Проектирование и Авторский надзор', kz: 'Жобалау және Авторлық қадағалау' },
     category: { en: 'Infrastructure', ru: 'Инфраструктура', kz: 'Инфрақұрылым' },
     type: 'infrastructure',
-    img: '/images/objects/KCOI company.jpg',
+    img: './images/objects/KCOI company.jpg',
     clients: [
-      { name: 'Kazakhstan Caspian Offshore Industries', logo: '/images/clients/kcoi.png' }
+      { name: 'Kazakhstan Caspian Offshore Industries', logo: './images/clients/kcoi.png' }
     ],
     details: [
       { en: 'Project documentation, working documentation and author supervision for Steel Structures Plant with Quay, Tyub-Karagansky district (2009-2011).', ru: 'Проектная и рабочая документация, авторский надзор Завода металлоконструкций с причалом в Тюб-Караганском районе (2009-2011).', kz: 'Түп-Қараған ауданында айлағы бар металл конструкциялар зауытының жобалық, жұмыс құжаттамасы және авторлық қадағалау (2009-2011).' }
@@ -436,11 +436,11 @@ const projects = [
     scope: { en: 'Design, FS & Author Supervision', ru: 'Проектирование, ТЭО и Авторский надзор', kz: 'Жобалау, ТЭН және Авторлық қадағалау' },
     category: { en: 'Infrastructure', ru: 'Инфраструктура', kz: 'Инфрақұрылым' },
     type: 'infrastructure',
-    img: '/images/objects/Инфраструктурные объекты.jpg',
+    img: './images/objects/Инфраструктурные объекты.jpg',
     clients: [
-      { name: 'Atyrau Refinery', logo: '/images/clients/atyrau-npz.png' },
-      { name: 'Teniz Service', logo: '/images/clients/teniz-service.png' },
-      { name: 'Honeywell-ACS (PKOP)', logo: '/images/clients/honeywell-asu.png' }
+      { name: 'Atyrau Refinery', logo: './images/clients/atyrau-npz.png' },
+      { name: 'Teniz Service', logo: './images/clients/teniz-service.png' },
+      { name: 'Honeywell-ACS (PKOP)', logo: './images/clients/honeywell-asu.png' }
     ],
     details: [
       { en: 'NefteStroyService — repair bases for 250 units (Karazhanbas) and 100 units (Kalamkas) (2012-2013).', ru: 'НефтеСтройСервис — ремонтные базы на 250 ед. (Каражанбас) и 100 ед. (Каламкас) (2012-2013).', kz: 'НефтеСтройСервис — Қаражанбаста 250 және Қаламқаста 100 бірлікке жөндеу базалары (2012-2013).' },
@@ -463,12 +463,12 @@ const projects = [
     scope: { en: 'Design, EIA, Gas Utilization & Author Supervision', ru: 'Проектирование, ОВОС, утилизация газа и Авторский надзор', kz: 'Жобалау, ҚОӘБ, газды пайдалану және Авторлық қадағалау' },
     category: { en: 'Onshore', ru: 'Наземные', kz: 'Жердегі' },
     type: 'onshore',
-    img: '/images/objects/Другие объекты.jpg',
+    img: './images/objects/Другие объекты.jpg',
     clients: [
-      { name: 'KarazhanbasMunai', logo: '/images/clients/karazhanbas-munai.png' },
-      { name: 'KarakudukMunai LLP', logo: '/images/clients/karakuduk-munai.png' },
-      { name: 'NC KazMunayGas', logo: '/images/clients/nc-kazmunaigas.png' },
-      { name: 'MangistauMunaiGas', logo: '/images/clients/mangistaumunaigas.png' }
+      { name: 'KarazhanbasMunai', logo: './images/clients/karazhanbas-munai.png' },
+      { name: 'KarakudukMunai LLP', logo: './images/clients/karakuduk-munai.png' },
+      { name: 'NC KazMunayGas', logo: './images/clients/nc-kazmunaigas.png' },
+      { name: 'MangistauMunaiGas', logo: './images/clients/mangistaumunaigas.png' }
     ],
     details: [
       { en: 'KarazhanbasMunai — design documentation and author supervision for facility construction at Karazhanbas (2004-2005).', ru: 'КаражанбасМунай — ПСД для строительства объектов месторождения Каражанбас, авторский надзор (2004-2005).', kz: 'КаражанбасМунай — Қаражанбас кен орнының нысандарын салуға ЖСҚ, авторлық қадағалау (2004-2005).' },
