@@ -1,75 +1,83 @@
 ﻿<template>
   <footer class="footer" ref="footerRef">
-    <div class="footer-top">
-      <div class="container footer-top-inner">
-        <div class="footer-tagline">
-          <p>{{ t('The next generation of', 'Следующее поколение', 'Жаңа буын') }}</p>
-          <p class="tagline-muted">{{ t('oil & gas engineering', 'нефтегазового инжиниринга', 'мұнай-газ инжинирингі') }}</p>
+    <div class="footer-grid">
+      <!-- LEFT COLUMN: Nav links -->
+      <div class="footer-left">
+        <div class="footer-eyebrow">{{ t('CASPIAN ENGINEERING & RESEARCH', 'CASPIAN ENGINEERING & RESEARCH', 'CASPIAN ENGINEERING & RESEARCH') }}</div>
+
+        <nav class="footer-nav-list">
+          <RouterLink to="/services" class="footer-nav-row">
+            <span class="nav-title">{{ t('Services', 'Услуги', 'Қызметтер') }}</span>
+            <span class="nav-meta">{{ t('Engineering & documentation', 'Инжиниринг и документация', 'Инжиниринг және құжаттама') }}</span>
+            <svg class="nav-arrow" width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <path d="M5 17L17 5M17 5H7M17 5V15" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+            </svg>
+          </RouterLink>
+
+          <RouterLink to="/portfolio" class="footer-nav-row">
+            <span class="nav-title">{{ t('Portfolio', 'Портфолио', 'Портфолио') }}</span>
+            <span class="nav-meta">{{ t('40+ major projects', '40+ крупных проектов', '40+ ірі жоба') }}</span>
+            <svg class="nav-arrow" width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <path d="M5 17L17 5M17 5H7M17 5V15" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+            </svg>
+          </RouterLink>
+
+          <RouterLink to="/about" class="footer-nav-row">
+            <span class="nav-title">{{ t('About', 'О компании', 'Компания туралы') }}</span>
+            <span class="nav-meta">{{ t('20+ years in Kazakhstan', '20+ лет в Казахстане', 'Қазақстанда 20+ жыл') }}</span>
+            <svg class="nav-arrow" width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <path d="M5 17L17 5M17 5H7M17 5V15" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+            </svg>
+          </RouterLink>
+
+          <RouterLink to="/team" class="footer-nav-row">
+            <span class="nav-title">{{ t('Our Team', 'Команда', 'Команда') }}</span>
+            <span class="nav-meta">{{ t('Specialists & leadership', 'Специалисты и руководство', 'Мамандар және басшылық') }}</span>
+            <svg class="nav-arrow" width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <path d="M5 17L17 5M17 5H7M17 5V15" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+            </svg>
+          </RouterLink>
+
+          <a href="mailto:General.O@nipicer.kz" class="footer-nav-row">
+            <span class="nav-title">{{ t('Contacts', 'Контакты', 'Байланыс') }}</span>
+            <span class="nav-meta">{{ t('Get in touch', 'Связаться с нами', 'Бізбен байланысу') }}</span>
+            <svg class="nav-arrow" width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <path d="M5 17L17 5M17 5H7M17 5V15" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+            </svg>
+          </a>
+        </nav>
+
+        <div class="footer-copyright">@2026 - All rights reserved.</div>
+      </div>
+
+      <!-- RIGHT COLUMN: Contact info -->
+      <div class="footer-right">
+        <div class="footer-eyebrow">{{ t('CONTACT INFORMATION', 'КОНТАКТНАЯ ИНФОРМАЦИЯ', 'БАЙЛАНЫС АҚПАРАТЫ') }}</div>
+
+        <div class="info-block">
+          <div class="info-label">{{ t('LOCATION', 'АДРЕС', 'МЕКЕНЖАЙ') }}</div>
+          <p class="info-text">{{ t(
+            'Kazakhstan, Mangistau Region',
+            'Казахстан, Мангистауская обл.',
+            'Қазақстан, Маңғыстау обл.'
+          ) }}<br />{{ t(
+            'Aktau, Mcrd. 17, Build. 38',
+            'г. Актау, 17 мкрн., д. 38',
+            'Ақтау қ., 17 ш/а, 38 ғимарат'
+          ) }}</p>
         </div>
 
-        <div class="footer-info">
-          <div class="footer-col">
-            <div class="footer-col-label">{{ t('LOCATION', 'АДРЕС', 'МЕКЕНЖАЙ') }}</div>
-            <p>{{ t(
-              'R00A7G9, Kazakhstan, Mangistau Region, Aktau, Mcrd. 17, Build. 38',
-              'R00A7G9, Казахстан, Мангистауская обл., г. Актау, 17 мкрн., д. 38',
-              'R00A7G9, Қазақстан, Маңғыстау обл., Ақтау қ., 17 ш/а, 38 ғимарат'
-            ) }}</p>
-          </div>
-          <div class="footer-col">
-            <div class="footer-col-label">{{ t('HOURS', 'ЧАСЫ РАБОТЫ', 'ЖҰМЫС УАҚЫТЫ') }}</div>
-            <p>{{ t('Mon – Fri', 'Пн – Пт', 'Дс – Жм') }}<br />09:00 – 18:00</p>
-          </div>
-          <div class="footer-col">
-            <div class="footer-col-label">{{ t('CONTACT', 'ТЕЛЕФОН', 'ТЕЛЕФОН') }}</div>
-            <p>+7 (7292) 200-501</p>
-            <p class="footer-fax">{{ t('Fax', 'Факс', 'Факс') }}: +7 (7292) 200-505</p>
-          </div>
-          <div class="footer-col">
-            <div class="footer-col-label">EMAIL</div>
-            <p>General.O@nipicer.kz</p>
-          </div>
+        <div class="info-block">
+          <div class="info-label">{{ t('CONTACT', 'ТЕЛЕФОН', 'ТЕЛЕФОН') }}</div>
+          <p class="info-phone">+7 (7292) 200-501</p>
+          <p class="info-email">General.O@nipicer.kz</p>
         </div>
-      </div>
-    </div>
 
-    <div class="footer-mid">
-      <div class="container">
-        <p class="footer-summary">
-          {{ t(
-            'Engineering excellence across every phase of the energy lifecycle. Safe, sustainable, and built to perform.',
-            'Инженерное совершенство на каждом этапе энергетического цикла. Безопасно, устойчиво и результативно.',
-            'Энергетика тіршілік циклінің әрбір кезеңінде инженерлік жоғары деңгей. Қауіпсіз, тұрақты және тиімді.'
-          ) }}
-        </p>
-      </div>
-    </div>
-
-    <div class="footer-wordmark-wrap">
-      <div class="container footer-wordmark-inner">
-        <div class="footer-copyright">©2026</div>
-        <RouterLink to="/portfolio" class="see-projects-btn">
-          {{ t('See Portfolio', 'Портфолио', 'Портфолио') }}
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-        </RouterLink>
-      </div>
-      <div class="footer-wordmark">CER</div>
-    </div>
-
-    <div class="footer-bottom">
-      <div class="container footer-bottom-inner">
-        <span>{{ t(
-          '©2026 Caspian Engineering & Research, LLP. All Rights Reserved. Reg. #5727-1943-TOO',
-          '©2026 ТОО «Caspian Engineering & Research». Все права защищены. Рег. №5727-1943-ТОО',
-          '©2026 «Caspian Engineering & Research» ЖШС. Барлық құқықтар қорғалған. Тіркеу №5727-1943-ТОО'
-        ) }}</span>
-        <div class="footer-nav">
-          <RouterLink to="/services">{{ t('Services', 'Услуги', 'Қызметтер') }}</RouterLink>
-          <RouterLink to="/portfolio">{{ t('Portfolio', 'Портфолио', 'Портфолио') }}</RouterLink>
-          <RouterLink to="/team">{{ t('Our Team', 'Команда', 'Команда') }}</RouterLink>
+        <div class="info-block">
+          <div class="info-label">{{ t('HOURS', 'ЧАСЫ РАБОТЫ', 'ЖҰМЫС УАҚЫТЫ') }}</div>
+          <p class="info-text">{{ t('Mon – Fri', 'Пн – Пт', 'Дс – Жм') }}, 09:00 – 18:00</p>
         </div>
+
       </div>
     </div>
   </footer>
@@ -86,23 +94,19 @@ let ctx
 
 onMounted(() => {
   ctx = gsap.context(() => {
-    gsap.from('.footer-tagline', {
-      opacity: 0, y: 32, duration: 0.8, ease: ease.out,
-      scrollTrigger: { trigger: '.footer-top', start: 'top 88%', once: true }
+    gsap.from('.footer-left .footer-eyebrow, .footer-right .footer-eyebrow', {
+      opacity: 0, y: 20, duration: 0.7, ease: ease.out,
+      scrollTrigger: { trigger: '.footer', start: 'top 88%', once: true }
     })
-    gsap.from('.footer-col', {
-      opacity: 0, y: 22, duration: 0.65, stagger: 0.09, delay: 0.1, ease: ease.out,
-      scrollTrigger: { trigger: '.footer-top', start: 'top 88%', once: true }
+    gsap.from('.footer-nav-row', {
+      opacity: 0, y: 24, duration: 0.7, stagger: 0.08, delay: 0.1, ease: ease.out,
+      scrollTrigger: { trigger: '.footer', start: 'top 88%', once: true }
     })
-    gsap.from('.footer-summary', {
-      opacity: 0, y: 18, duration: 0.7, ease: ease.out,
-      scrollTrigger: { trigger: '.footer-mid', start: 'top 90%', once: true }
+    gsap.from('.info-block', {
+      opacity: 0, y: 20, duration: 0.65, stagger: 0.08, delay: 0.15, ease: ease.out,
+      scrollTrigger: { trigger: '.footer', start: 'top 88%', once: true }
     })
-    gsap.from('.footer-wordmark', {
-      opacity: 0, scale: 0.55, filter: 'blur(24px)', duration: 1.3,
-      ease: ease.out, clearProps: 'filter',
-      scrollTrigger: { trigger: '.footer-wordmark-wrap', start: 'top 88%', once: true }
-    })
+
   }, footerRef.value)
 })
 
@@ -114,177 +118,182 @@ onUnmounted(() => ctx?.revert())
   background: var(--dark);
   color: var(--white);
   overflow: hidden;
+  padding: 80px 0 56px;
 }
 
-.footer-top {
-  padding: 64px 0 40px;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-}
-
-.footer-top-inner {
-  display: flex;
-  justify-content: space-between;
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 48px;
-  align-items: flex-start;
+  align-items: stretch;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 80px;
 }
 
-.footer-tagline {
-  font-size: clamp(22px, 3vw, 34px);
+.footer-eyebrow {
+  font-size: 14px;
   font-weight: 600;
-  letter-spacing: -0.8px;
-  line-height: 1.25;
-  flex-shrink: 0;
+  letter-spacing: 1.8px;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  margin-bottom: 56px;
 }
 
-.tagline-muted {
-  color: rgba(255,255,255,0.45);
-}
-
-.footer-info {
-  display: flex;
-  gap: 40px;
-  flex-wrap: wrap;
-}
-
-.footer-col {
+/* LEFT COLUMN */
+.footer-left {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  min-width: 130px;
 }
 
-.footer-col-label {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 1.2px;
-  color: rgba(255,255,255,0.35);
-  text-transform: uppercase;
-}
-
-.footer-col p {
-  font-size: 13px;
-  line-height: 1.6;
-  color: rgba(255,255,255,0.7);
-}
-
-.footer-fax {
-  color: rgba(255,255,255,0.4) !important;
-  font-size: 11px !important;
-}
-
-.footer-mid {
-  padding: 24px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-}
-
-.footer-summary {
-  font-size: 12px;
-  color: rgba(255,255,255,0.35);
-  max-width: 480px;
-  line-height: 1.6;
-}
-
-.footer-wordmark-wrap {
-  position: relative;
-  padding: 40px 0 0;
-}
-
-.footer-wordmark-inner {
+.footer-nav-list {
   display: flex;
+  flex-direction: column;
+}
+
+.footer-nav-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: -20px;
-  position: relative;
-  z-index: 1;
+  gap: 24px;
+  padding: 32px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--white);
+  transition: padding 0.25s ease;
+}
+
+.footer-nav-row:hover {
+  padding-left: 8px;
+}
+
+.footer-nav-row:hover .nav-arrow {
+  transform: translate(3px, -3px);
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.nav-title {
+  font-size: clamp(22px, 2.4vw, 34px);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.5px;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.nav-meta {
+  font-size: clamp(12px, 0.95vw, 14px);
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.2px;
+}
+
+.nav-arrow {
+  color: rgba(255, 255, 255, 0.4);
+  transition: transform 0.25s ease, color 0.25s ease;
 }
 
 .footer-copyright {
-  font-size: 22px;
+  margin-top: 56px;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.35);
+  letter-spacing: 0.5px;
+}
+
+/* RIGHT COLUMN */
+.footer-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
+.info-block {
+  margin-bottom: 70px;
+}
+
+.info-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.info-text {
+  font-size: clamp(18px, 1.6vw, 24px);
+  font-weight: 500;
+  line-height: 1.35;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.info-phone {
+  font-size: clamp(26px, 2.6vw, 38px);
   font-weight: 700;
-  color: rgba(255,255,255,0.5);
+  line-height: 1.1;
+  color: var(--white);
+  margin-bottom: 6px;
   letter-spacing: -0.5px;
 }
 
-.see-projects-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 20px;
-  background: var(--accent);
-  color: var(--on-accent);
-  font-size: 13px;
-  font-weight: 600;
-  border-radius: 100px;
-  transition: background 0.2s;
+.info-email {
+  font-size: clamp(18px, 1.6vw, 24px);
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: -0.2px;
 }
 
-.see-projects-btn:hover {
-  background: var(--accent-hover);
-}
 
-.footer-wordmark {
-  font-size: clamp(100px, 18vw, 220px);
-  font-weight: 700;
-  letter-spacing: -4px;
-  color: rgba(255,255,255,0.9);
-  line-height: 0.85;
-  padding: 0 24px;
-  text-align: center;
-  margin-top: -10px;
-  will-change: transform, opacity, filter;
-}
 
-.footer-bottom {
-  padding: 20px 0;
-  border-top: 1px solid rgba(255,255,255,0.08);
-}
-
-.footer-bottom-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-}
-
-.footer-bottom span {
-  font-size: 11px;
-  color: rgba(255,255,255,0.3);
-}
-
-.footer-nav {
-  display: flex;
-  gap: 24px;
-}
-
-.footer-nav a {
-  font-size: 11px;
-  color: rgba(255,255,255,0.4);
-  transition: color 0.2s;
-}
-
-.footer-nav a:hover {
-  color: rgba(255,255,255,0.8);
-}
-
-@media (max-width: 900px) {
-  .footer-top-inner {
-    flex-direction: column;
+@media (max-width: 1024px) {
+  .footer-grid {
+    gap: 40px;
+    padding: 0 40px;
   }
 
-  .footer-info {
-    gap: 24px;
+  .nav-title {
+    font-size: clamp(18px, 3vw, 28px);
   }
 }
 
-@media (max-width: 640px) {
-  .footer-wordmark {
-    font-size: clamp(80px, 22vw, 120px);
+@media (max-width: 820px) {
+  .footer {
+    padding: 56px 0 40px;
   }
 
-  .footer-bottom-inner {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    padding: 0 24px;
+  }
+
+  .footer-nav-row {
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    gap: 4px 16px;
+  }
+
+  .nav-title {
+    grid-column: 1;
+    grid-row: 1;
+    font-size: 24px;
+  }
+
+  .nav-meta {
+    grid-column: 1;
+    grid-row: 2;
+    font-size: 12px;
+  }
+
+  .nav-arrow {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    align-self: center;
+  }
+
+  .info-phone {
+    font-size: 18px;
   }
 }
+
 </style>

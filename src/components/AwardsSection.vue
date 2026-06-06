@@ -66,11 +66,17 @@
         <!-- Right: Copy + CTA -->
         <div class="awards-home-copy">
           <p class="awards-home-desc">
-            {{ t(
-              'CE&R has earned something special. The biggest energy players and national institutions in Kazakhstan trust us, because we don\'t just do engineering—we deliver excellence, every single time.',
-              'CE&R заслужила нечто особенное. Крупнейшие игроки энергетики и национальные институты Казахстана доверяют нам, потому что мы не просто занимаемся инжинирингом — мы каждый раз обеспечиваем превосходство.',
-              'CE&R ерекше нәрсеге ие болды. Қазақстанның ірі энергетика ойыншылары мен ұлттық институттары бізге сенеді, өйткені біз тек инжиниринг жасап қана қоймай, әр жолы үздік нәтиже береміз.'
-            ) }}
+            <span class="awards-home-desc--highlight">{{ t(
+              'CE&R has earned something special.',
+              'CE&R заслужила нечто особенное.',
+              'CE&R ерекше нәрсеге ие болды.'
+            ) }}</span>
+            {{ ' ' }}
+            <span class="awards-home-desc--plain">{{ t(
+              'The biggest energy players and national institutions in Kazakhstan trust us, because we don\'t just do engineering—we deliver excellence, every single time.',
+              'Крупнейшие игроки энергетики и национальные институты Казахстана доверяют нам, потому что мы не просто занимаемся инжинирингом — мы каждый раз обеспечиваем превосходство.',
+              'Қазақстанның ірі энергетика ойыншылары мен ұлттық институттары бізге сенеді, өйткені біз тек инжиниринг жасап қана қоймай, әр жолы үздік нәтиже береміз.'
+            ) }}</span>
           </p>
           <RouterLink to="/about" class="awards-home-cta">
             {{ t('About us', 'О нас', 'Біз туралы') }}
@@ -236,12 +242,12 @@ onUnmounted(() => {
 
 <style scoped>
 .awards-home-sec {
-  padding: 100px 0;
-  background: var(--accent);
+  padding: 50px 0;
+  background: #0058b1;
 }
 
 .awards-home-top {
-  margin-bottom: 28px;
+  margin-bottom: 20px;
 }
 
 .section-badge {
@@ -408,6 +414,19 @@ onUnmounted(() => {
   line-height: 1.65;
   color: rgba(255,255,255,0.8);
   max-width: 460px;
+}
+
+.awards-home-desc--highlight {
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.3px;
+}
+
+.awards-home-desc--plain {
+  font-size: 15px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.65);
 }
 
 .awards-home-cta {

@@ -14,7 +14,7 @@
       <div class="container services-content">
         <div class="services-top">
           <span class="our-services-label">{{ t('Our Services', 'Наши услуги', 'Біздің қызметтер') }}</span>
-          <div class="slide-counter">(0{{ currentSlide }}/04)</div>
+          <div class="slide-counter">0{{ currentSlide }}-04</div>
         </div>
 
         <div class="services-body">
@@ -195,6 +195,7 @@ onUnmounted(() => ctx?.revert())
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 }
 
 .our-services-label {
@@ -215,6 +216,10 @@ onUnmounted(() => ctx?.revert())
   color: rgba(255,255,255,0.9);
   letter-spacing: -1px;
   line-height: 1;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .services-body {

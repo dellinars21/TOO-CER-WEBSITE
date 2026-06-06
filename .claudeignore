@@ -1,0 +1,9 @@
+# Build outputs
+dist/
+
+# Git
+.git/
+
+node_modules/
+old_site/
+public/
