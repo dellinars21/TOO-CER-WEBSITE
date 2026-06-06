@@ -141,7 +141,7 @@ const projects = [
     subEn: 'TCO (FGP/WPMP)', subRu: 'ТШО (FGP/WPMP)', subKz: 'ТШО (FGP/WPMP)',
     client: 'TCO',
     locEn: 'Atyrau Region', locRu: 'Атырауская область', locKz: 'Атырау облысы',
-    duration: '2016 – 2023',
+    duration: '2008 – 2025',
     image: '/images/objects/Месторождение Тенгиз.jpg'
   },
   {
@@ -149,7 +149,7 @@ const projects = [
     titleEn: 'CPC Pipeline', titleRu: 'Трубопровод КТК', titleKz: 'КТК Құбыры',
     subEn: 'Expansion Project', subRu: 'Расширение', subKz: 'Кеңейту',
     client: 'CPC', locEn: 'Kazakhstan / Russia', locRu: 'Казахстан / Россия', locKz: 'Қазақстан / Ресей',
-    duration: '2009 – 2015',
+    duration: '2006 – 2008',
     image: '/images/objects/КТК Атырау.webp'
   }
 ]

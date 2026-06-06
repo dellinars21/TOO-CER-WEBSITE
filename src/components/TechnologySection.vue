@@ -71,11 +71,15 @@
         <!-- Center column -->
         <div class="expertise-center">
           <div class="years-card">
-            <div class="toggle-row">
-              <div class="toggle-switch on">
-                <div class="toggle-thumb"></div>
+            <div class="cert-row">
+              <div class="cert-icon">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <circle cx="10" cy="8" r="5" stroke="currentColor" stroke-width="1.5"/>
+                  <path d="M7 13.5L6 18L10 16L14 18L13 13.5" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                  <path d="M8.5 8L9.5 9L11.5 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
               </div>
-              <span class="toggle-label">
+              <span class="cert-label">
                 {{ t(
                   'Certified to ISO 9001:2015 · ISO 14001:2015 · OHSAS 18001:2008',
                   'Сертифицированы по ISO 9001:2015 · ISO 14001:2015 · OHSAS 18001:2008',
@@ -119,39 +123,109 @@
         <!-- Right: technical diagram -->
         <div class="expertise-diagram">
           <svg viewBox="0 0 280 420" fill="none" xmlns="http://www.w3.org/2000/svg" class="rig-diagram">
-            <line x1="140" y1="20" x2="100" y2="300" stroke="#CCCCCC" stroke-width="1.5"/>
-            <line x1="140" y1="20" x2="180" y2="300" stroke="#CCCCCC" stroke-width="1.5"/>
-            <line x1="110" y1="80" x2="170" y2="80" stroke="#CCCCCC" stroke-width="1"/>
-            <line x1="108" y1="120" x2="172" y2="120" stroke="#CCCCCC" stroke-width="1"/>
-            <line x1="106" y1="160" x2="174" y2="160" stroke="#CCCCCC" stroke-width="1"/>
-            <line x1="104" y1="200" x2="176" y2="200" stroke="#CCCCCC" stroke-width="1"/>
-            <line x1="102" y1="240" x2="178" y2="240" stroke="#CCCCCC" stroke-width="1"/>
-            <line x1="110" y1="80" x2="140" y2="120" stroke="#DDDDDD" stroke-width="0.8"/>
-            <line x1="170" y1="80" x2="140" y2="120" stroke="#DDDDDD" stroke-width="0.8"/>
-            <line x1="108" y1="120" x2="140" y2="160" stroke="#DDDDDD" stroke-width="0.8"/>
-            <line x1="172" y1="120" x2="140" y2="160" stroke="#DDDDDD" stroke-width="0.8"/>
-            <line x1="106" y1="160" x2="140" y2="200" stroke="#DDDDDD" stroke-width="0.8"/>
-            <line x1="174" y1="160" x2="140" y2="200" stroke="#DDDDDD" stroke-width="0.8"/>
-            <rect x="125" y="10" width="30" height="14" rx="3" fill="none" stroke="#AAAAAA" stroke-width="1.5"/>
-            <rect x="70" y="295" width="140" height="18" rx="4" fill="none" stroke="#AAAAAA" stroke-width="1.5"/>
-            <line x1="70" y1="295" x2="50" y2="320" stroke="#AAAAAA" stroke-width="1.2"/>
-            <line x1="210" y1="295" x2="230" y2="320" stroke="#AAAAAA" stroke-width="1.2"/>
-            <line x1="50" y1="320" x2="230" y2="320" stroke="#AAAAAA" stroke-width="1.5"/>
-            <line x1="80" y1="313" x2="75" y2="380" stroke="#BBBBBB" stroke-width="2"/>
-            <line x1="140" y1="313" x2="140" y2="380" stroke="#BBBBBB" stroke-width="2"/>
-            <line x1="200" y1="313" x2="205" y2="380" stroke="#BBBBBB" stroke-width="2"/>
-            <line x1="140" y1="305" x2="140" y2="415" stroke="var(--accent)" stroke-width="2" stroke-dasharray="6,4"/>
-            <line x1="230" y1="80" x2="240" y2="80" stroke="#AAAAAA" stroke-width="0.8"/>
-            <line x1="230" y1="160" x2="240" y2="160" stroke="#AAAAAA" stroke-width="0.8"/>
-            <line x1="235" y1="80" x2="235" y2="160" stroke="#AAAAAA" stroke-width="0.8"/>
-            <text x="244" y="124" font-size="9" fill="#999999" font-family="Space Grotesk, sans-serif">EP Stage</text>
-            <line x1="230" y1="160" x2="240" y2="160" stroke="#AAAAAA" stroke-width="0.8"/>
-            <line x1="230" y1="300" x2="240" y2="300" stroke="#AAAAAA" stroke-width="0.8"/>
-            <line x1="235" y1="160" x2="235" y2="300" stroke="#AAAAAA" stroke-width="0.8"/>
-            <text x="244" y="235" font-size="9" fill="#999999" font-family="Space Grotesk, sans-serif">DD Stage</text>
-            <circle cx="140" cy="80" r="5" fill="var(--accent)" opacity="0.9"/>
-            <circle cx="140" cy="160" r="5" fill="var(--accent)" opacity="0.9"/>
-            <circle cx="140" cy="240" r="5" fill="var(--accent)" opacity="0.9"/>
+
+            <!-- Ground line -->
+            <line x1="20" y1="340" x2="260" y2="340" stroke="#BBBBBB" stroke-width="1.5"/>
+            <!-- Ground hatch -->
+            <line x1="30" y1="340" x2="20" y2="354" stroke="#CCCCCC" stroke-width="1"/>
+            <line x1="50" y1="340" x2="40" y2="354" stroke="#CCCCCC" stroke-width="1"/>
+            <line x1="70" y1="340" x2="60" y2="354" stroke="#CCCCCC" stroke-width="1"/>
+            <line x1="90" y1="340" x2="80" y2="354" stroke="#CCCCCC" stroke-width="1"/>
+            <line x1="110" y1="340" x2="100" y2="354" stroke="#CCCCCC" stroke-width="1"/>
+            <line x1="130" y1="340" x2="120" y2="354" stroke="#CCCCCC" stroke-width="1"/>
+            <line x1="150" y1="340" x2="140" y2="354" stroke="#CCCCCC" stroke-width="1"/>
+            <line x1="170" y1="340" x2="160" y2="354" stroke="#CCCCCC" stroke-width="1"/>
+            <line x1="190" y1="340" x2="180" y2="354" stroke="#CCCCCC" stroke-width="1"/>
+            <line x1="210" y1="340" x2="200" y2="354" stroke="#CCCCCC" stroke-width="1"/>
+            <line x1="230" y1="340" x2="220" y2="354" stroke="#CCCCCC" stroke-width="1"/>
+            <line x1="250" y1="340" x2="240" y2="354" stroke="#CCCCCC" stroke-width="1"/>
+
+            <!-- Base / skid frame -->
+            <rect x="60" y="310" width="160" height="30" rx="3" fill="none" stroke="#AAAAAA" stroke-width="1.5"/>
+            <line x1="100" y1="310" x2="100" y2="340" stroke="#BBBBBB" stroke-width="1"/>
+            <line x1="140" y1="310" x2="140" y2="340" stroke="#BBBBBB" stroke-width="1"/>
+            <line x1="180" y1="310" x2="180" y2="340" stroke="#BBBBBB" stroke-width="1"/>
+
+            <!-- Samson post (vertical tower) -->
+            <rect x="118" y="170" width="10" height="140" fill="none" stroke="#AAAAAA" stroke-width="1.5"/>
+            <rect x="132" y="170" width="10" height="140" fill="none" stroke="#AAAAAA" stroke-width="1.5"/>
+            <!-- Cross braces on samson post -->
+            <line x1="118" y1="200" x2="142" y2="230" stroke="#CCCCCC" stroke-width="1"/>
+            <line x1="142" y1="200" x2="118" y2="230" stroke="#CCCCCC" stroke-width="1"/>
+            <line x1="118" y1="240" x2="142" y2="270" stroke="#CCCCCC" stroke-width="1"/>
+            <line x1="142" y1="240" x2="118" y2="270" stroke="#CCCCCC" stroke-width="1"/>
+
+            <!-- Sampson post cap / pivot bearing -->
+            <rect x="112" y="162" width="36" height="12" rx="3" fill="none" stroke="#999999" stroke-width="1.5"/>
+            <!-- Pivot pin -->
+            <circle cx="130" cy="168" r="4" fill="none" stroke="var(--accent)" stroke-width="1.5"/>
+
+            <!-- Walking beam (angled — front end up, tail end down) -->
+            <!-- Beam runs from ~x=50,y=148 (front/horse-head end) to x=210,y=188 (tail end) -->
+            <line x1="50" y1="148" x2="210" y2="188" stroke="#888888" stroke-width="4" stroke-linecap="round"/>
+            <!-- Beam thickness (parallel line) -->
+            <line x1="50" y1="153" x2="210" y2="193" stroke="#AAAAAA" stroke-width="2" stroke-linecap="round"/>
+
+            <!-- Horse head (curved front of beam) -->
+            <path d="M50,148 Q34,140 30,158 Q28,172 44,176" stroke="#888888" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <circle cx="44" cy="176" r="3" fill="none" stroke="var(--accent)" stroke-width="1.5"/>
+
+            <!-- Polished rod / bridle cable from horse head down -->
+            <line x1="44" y1="176" x2="44" y2="310" stroke="var(--accent)" stroke-width="1.5" stroke-dasharray="5,3"/>
+            <!-- Polished rod stuffing box -->
+            <rect x="36" y="298" width="16" height="14" rx="2" fill="none" stroke="#AAAAAA" stroke-width="1.5"/>
+            <circle cx="44" cy="305" r="3" fill="none" stroke="#999999" stroke-width="1"/>
+
+            <!-- Counterweight crank arm (tail side) -->
+            <!-- Crank arm from pivot down-right to crank pin -->
+            <line x1="130" y1="168" x2="210" y2="260" stroke="#888888" stroke-width="3" stroke-linecap="round"/>
+            <!-- Counterweight box on crank arm -->
+            <rect x="192" y="248" width="32" height="20" rx="4" fill="none" stroke="#AAAAAA" stroke-width="1.5"/>
+            <!-- Crank pin circle -->
+            <circle cx="210" cy="258" r="5" fill="none" stroke="#999999" stroke-width="1.5"/>
+
+            <!-- Pitman arm (connects crank pin to tail of beam) -->
+            <line x1="210" y1="258" x2="210" y2="193" stroke="#AAAAAA" stroke-width="2" stroke-linecap="round"/>
+
+            <!-- Prime mover / motor box -->
+            <rect x="165" y="278" width="50" height="32" rx="4" fill="none" stroke="#AAAAAA" stroke-width="1.5"/>
+            <line x1="175" y1="278" x2="175" y2="310" stroke="#BBBBBB" stroke-width="1"/>
+            <line x1="185" y1="278" x2="185" y2="310" stroke="#BBBBBB" stroke-width="1"/>
+            <text x="172" y="297" font-size="8" fill="#999999" font-family="Space Grotesk, sans-serif">MOTOR</text>
+
+            <!-- Belt drive from motor to crank -->
+            <line x1="190" y1="278" x2="210" y2="260" stroke="#CCCCCC" stroke-width="1" stroke-dasharray="3,2"/>
+
+            <!-- Annotation: Walking Beam -->
+            <line x1="120" y1="162" x2="86" y2="130" stroke="#CCCCCC" stroke-width="0.8"/>
+            <circle cx="86" cy="130" r="2" fill="#CCCCCC"/>
+            <text x="10" y="128" font-size="8" fill="#999999" font-family="Space Grotesk, sans-serif">Walking Beam</text>
+
+            <!-- Annotation: Horse Head -->
+            <line x1="36" y1="158" x2="8" y2="148" stroke="#CCCCCC" stroke-width="0.8"/>
+            <circle cx="8" cy="148" r="2" fill="#CCCCCC"/>
+            <text x="10" y="144" font-size="8" fill="#999999" font-family="Space Grotesk, sans-serif">Horse Head</text>
+
+            <!-- Annotation: Polished Rod -->
+            <line x1="58" y1="240" x2="72" y2="240" stroke="#CCCCCC" stroke-width="0.8"/>
+            <text x="74" y="243" font-size="8" fill="#999999" font-family="Space Grotesk, sans-serif">Polished Rod</text>
+
+            <!-- Annotation: Counterweight -->
+            <line x1="224" y1="258" x2="248" y2="248" stroke="#CCCCCC" stroke-width="0.8"/>
+            <circle cx="248" cy="248" r="2" fill="#CCCCCC"/>
+            <text x="244" y="244" font-size="8" fill="#999999" font-family="Space Grotesk, sans-serif">Crank &amp;</text>
+            <text x="244" y="254" font-size="8" fill="#999999" font-family="Space Grotesk, sans-serif">Counterweight</text>
+
+            <!-- Stage bracket left -->
+            <line x1="20" y1="170" x2="10" y2="170" stroke="#AAAAAA" stroke-width="0.8"/>
+            <line x1="20" y1="310" x2="10" y2="310" stroke="#AAAAAA" stroke-width="0.8"/>
+            <line x1="15" y1="170" x2="15" y2="310" stroke="#AAAAAA" stroke-width="0.8"/>
+            <text x="2" y="246" font-size="8" fill="#999999" font-family="Space Grotesk, sans-serif" transform="rotate(-90,8,246)">Surface Unit</text>
+
+            <!-- Accent dots at key pivot points -->
+            <circle cx="130" cy="168" r="4" fill="var(--accent)" opacity="0.85"/>
+            <circle cx="44" cy="176" r="3.5" fill="var(--accent)" opacity="0.85"/>
+            <circle cx="210" cy="258" r="3.5" fill="var(--accent)" opacity="0.85"/>
           </svg>
         </div>
 
@@ -261,7 +335,7 @@ onUnmounted(() => ctx?.revert())
   display: grid;
   grid-template-columns: 1.1fr 1.1fr 0.8fr;
   gap: 20px;
-  align-items: start;
+  align-items: stretch;
 }
 
 .expertise-features {
@@ -327,54 +401,49 @@ onUnmounted(() => ctx?.revert())
 }
 
 .years-card {
-  background: var(--gray-100);
+  background: #ffffff;
   border-radius: 16px;
-  padding: 24px;
+  border: 1.5px solid #dfdede;
+  padding: 20px;
 }
 
-.toggle-row {
+.cert-row {
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
-.toggle-switch {
+.cert-icon {
   flex-shrink: 0;
-  width: 44px;
-  height: 24px;
-  border-radius: 12px;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
   background: var(--accent);
-  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--on-accent);
 }
 
-.toggle-thumb {
-  position: absolute;
-  top: 3px;
-  right: 3px;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: var(--on-accent);
-}
-
-.toggle-label {
+.cert-label {
   font-size: 11px;
   line-height: 1.5;
   color: var(--gray-500);
+  padding-top: 2px;
 }
 
 .years-value {
-  font-size: 80px;
+  font-size: 48px;
   font-weight: 700;
-  letter-spacing: -3px;
+  letter-spacing: -2px;
   color: var(--dark);
   line-height: 1;
 }
 
 .years-value span {
-  font-size: 48px;
-  letter-spacing: -2px;
+  font-size: 32px;
+  letter-spacing: -1px;
 }
 
 .years-label {
@@ -392,7 +461,7 @@ onUnmounted(() => ctx?.revert())
   padding: 20px;
   border-radius: 16px;
   border: 1.5px solid var(--gray-200);
-  background: var(--white);
+  background: var(--gray-100);
   align-items: flex-start;
 }
 
@@ -441,14 +510,15 @@ onUnmounted(() => ctx?.revert())
 
 .expertise-diagram {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
+  align-self: stretch;
 }
 
 .rig-diagram {
   width: 100%;
-  max-width: 280px;
-  height: auto;
+  max-width: 100%;
+  height: 100%;
 }
 
 @media (max-width: 1024px) {

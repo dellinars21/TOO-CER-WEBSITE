@@ -10,7 +10,6 @@
     <AwardsSection />
     <ProjectsSection />
     <ServicesSection />
-    <TestimonialsSection />
     <FooterSection />
   </main>
 </template>
@@ -26,6 +25,5 @@ import TechnologySection from '../components/TechnologySection.vue'
 import AwardsSection from '../components/AwardsSection.vue'
 import ProjectsSection from '../components/ProjectsSection.vue'
 import ServicesSection from '../components/ServicesSection.vue'
-import TestimonialsSection from '../components/TestimonialsSection.vue'
 import FooterSection from '../components/FooterSection.vue'
 </script>
