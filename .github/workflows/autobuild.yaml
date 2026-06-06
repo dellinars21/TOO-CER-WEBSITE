@@ -5,6 +5,8 @@ on:
       - main
 jobs:
   build-and-deploy:
+    permissions:
+      contents: write
     concurrency: ci-${{ github.ref }} 
     runs-on: ubuntu-latest
     steps:
