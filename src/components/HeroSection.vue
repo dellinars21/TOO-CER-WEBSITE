@@ -6,6 +6,19 @@
         alt="Offshore oil platform"
         class="hero-img"
         ref="imgRef"
+        :class="{ 'hero-img--hidden': videoReady }"
+      />
+      <video
+        ref="videoRef"
+        class="hero-video"
+        :class="{ 'hero-video--visible': videoReady }"
+        src="/images/hero_section_video.mp4"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        @canplaythrough="onVideoReady"
       />
       <div class="hero-overlay"></div>
     </div>
@@ -46,9 +59,16 @@ const { t } = useLanguage()
 
 const heroRef  = ref(null)
 const imgRef   = ref(null)
+const videoRef = ref(null)
 const titleRef = ref(null)
 const rightRef = ref(null)
+const videoReady = ref(false)
 let ctx
+
+function onVideoReady() {
+  videoReady.value = true
+  videoRef.value.playbackRate = 0.70
+}
 
 onMounted(() => {
   ctx = gsap.context(() => {
@@ -96,8 +116,8 @@ onMounted(() => {
       ease: ease.out,
     })
 
-    // ── 4. Parallax — background image moves slower than viewport ────────
-    gsap.to(imgRef.value, {
+    // ── 4. Parallax — background image/video moves slower than viewport ────
+    gsap.to([imgRef.value, videoRef.value], {
       yPercent: 22,
       ease: ease.none,
       scrollTrigger: {
@@ -129,7 +149,7 @@ onUnmounted(() => ctx?.revert())
 <style scoped>
 .hero {
   position: relative;
-  height: 100vh;
+  height: calc(100vh - 64px);
   min-height: 600px;
   display: flex;
   align-items: flex-end;
@@ -150,6 +170,27 @@ onUnmounted(() => ctx?.revert())
   object-fit: cover;
   object-position: center 40%;
   will-change: transform;
+  transition: opacity 0.8s ease;
+}
+
+.hero-img--hidden {
+  opacity: 0;
+}
+
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 115%;          /* matches img for parallax travel */
+  object-fit: cover;
+  object-position: center 40%;
+  will-change: transform;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.hero-video--visible {
+  opacity: 1;
 }
 
 .hero-overlay {

@@ -20,7 +20,7 @@
     <section class="team-intro">
       <div class="container team-intro-grid">
         <div class="ti-block">
-          <div class="ti-icon">🎓</div>
+          <div class="ti-icon"><font-awesome-icon :icon="['fas', 'graduation-cap']" /></div>
           <h3>{{ t('Professional Development', 'Профессиональное развитие', 'Кәсіби даму') }}</h3>
           <p>{{ t(
             'Staff development is carried out at various courses and seminars both in Kazakhstan and abroad, allowing CE&R to track advanced technologies in world design experience.',
@@ -29,7 +29,7 @@
           ) }}</p>
         </div>
         <div class="ti-block">
-          <div class="ti-icon">🌐</div>
+          <div class="ti-icon"><font-awesome-icon :icon="['fas', 'globe']" /></div>
           <h3>{{ t('International Experience', 'Международный опыт', 'Халықаралық тәжірибе') }}</h3>
           <p>{{ t(
             'CE&R specialists work alongside international design companies on major Kazakhstan projects, building expertise in both local regulatory frameworks and global engineering practices.',
@@ -38,7 +38,7 @@
           ) }}</p>
         </div>
         <div class="ti-block">
-          <div class="ti-icon">⚙️</div>
+          <div class="ti-icon"><font-awesome-icon :icon="['fas', 'gears']" /></div>
           <h3>{{ t('Multi-Discipline Coverage', 'Многодисциплинарность', 'Көп дисциплиналық') }}</h3>
           <p>{{ t(
             'The team covers all engineering disciplines required for complete facility design: process, piping, civil/structural, electrical, instrumentation, environmental, and more.',
@@ -47,7 +47,7 @@
           ) }}</p>
         </div>
         <div class="ti-block">
-          <div class="ti-icon">🏆</div>
+          <div class="ti-icon"><font-awesome-icon :icon="['fas', 'trophy']" /></div>
           <h3>{{ t('Proven Track Record', 'Подтверждённый опыт', 'Дәлелденген тәжірибе') }}</h3>
           <p>{{ t(
             'Decades of successful project delivery for the largest subsoil users in Kazakhstan, including TCO, NCOC, KPO, and KazMunaiGaz, demonstrates the caliber of CE&R\'s engineering team.',

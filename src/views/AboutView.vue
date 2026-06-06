@@ -229,7 +229,7 @@
         <h2 class="values-title">{{ t('What drives us forward', 'Что движет нами', 'Бізді алға апаратын нәрсе') }}</h2>
         <div class="values-grid">
           <div class="value-card" v-for="v in values" :key="v.icon">
-            <div class="value-icon">{{ v.icon }}</div>
+            <div class="value-icon"><font-awesome-icon :icon="['fas', v.icon]" /></div>
             <h3>{{ t(v.titleEn, v.titleRu, v.titleKz) }}</h3>
             <p>{{ t(v.descEn, v.descRu, v.descKz) }}</p>
           </div>
@@ -393,7 +393,7 @@ function rewardsByTab(key) {
 
 const values = [
   {
-    icon: '📐',
+    icon: 'drafting-compass',
     titleEn: 'Engineering Precision',
     titleRu: 'Инженерная точность',
     titleKz: 'Инженерлік дәлдік',
@@ -402,7 +402,7 @@ const values = [
     descKz: 'Әрбір жоба алдыңғы қатарлы жобалау құралдары мен сапа менеджменті арқылы жоғары стандарттармен орындалады.',
   },
   {
-    icon: '🤝',
+    icon: 'handshake',
     titleEn: 'Client Partnership',
     titleRu: 'Партнёрство с клиентами',
     titleKz: 'Клиенттермен серіктестік',
@@ -411,7 +411,7 @@ const values = [
     descKz: 'Біз өзара сыйластық, ашықтық негізінде ұзақ мерзімді қарым-қатынастар орнатамыз.',
   },
   {
-    icon: '🌱',
+    icon: 'leaf',
     titleEn: 'Environmental Responsibility',
     titleRu: 'Экологическая ответственность',
     titleKz: 'Экологиялық жауапкершілік',
@@ -420,7 +420,7 @@ const values = [
     descKz: 'Біз Қазақстанның экологиялық заңнамасын толық сақтай отырып, экологиялық жауапкершілікті әрбір жобаға енгіземіз.',
   },
   {
-    icon: '⚖️',
+    icon: 'scale-balanced',
     titleEn: 'Regulatory Expertise',
     titleRu: 'Нормативная экспертиза',
     titleKz: 'Нормативтік сараптама',
@@ -864,7 +864,7 @@ const values = [
   border: 1.5px solid var(--gray-200);
 }
 
-.value-icon { font-size: 28px; line-height: 1; }
+.value-icon { font-size: 28px; line-height: 1; width: 28px; height: 28px; }
 
 .value-card h3 { font-size: 15px; font-weight: 700; color: var(--dark); }
 

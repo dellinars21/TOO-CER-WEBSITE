@@ -189,6 +189,7 @@ onUnmounted(() => ctx?.revert())
   display: flex;
   flex-direction: column;
   gap: 40px;
+  height: 350px;
 }
 
 .services-top {
@@ -227,6 +228,7 @@ onUnmounted(() => ctx?.revert())
   align-items: flex-end;
   justify-content: space-between;
   gap: 40px;
+  height: 100%;
 }
 
 .services-main {
