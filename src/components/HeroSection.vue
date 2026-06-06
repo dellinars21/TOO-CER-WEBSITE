@@ -2,7 +2,7 @@
   <section class="hero" ref="heroRef">
     <div class="hero-bg">
       <img
-        src="./images/hero background.webp"
+        src="/images/hero background.webp"
         alt="Offshore oil platform"
         class="hero-img"
         ref="imgRef"
@@ -12,9 +12,10 @@
         ref="videoRef"
         class="hero-video"
         :class="{ 'hero-video--visible': videoReady }"
-        src="./images/hero_section_video.mp4"
+        src="/images/hero_section_video.mp4"
         autoplay
         muted
+        loop
         playsinline
         preload="auto"
         @canplaythrough="onVideoReady"
@@ -25,7 +26,7 @@
     <div class="container hero-content">
       <div class="hero-brand" ref="brandRef">
         <h1 ref="titleRef">CER<sup>©</sup></h1>
-        <p class="hero-brand-sub">{{ t('Caspian Engineering & Research', 'Caspian Engineering & Research', 'Caspian Engineering & Research') }}</p>
+        <p class="hero-brand-sub">{{ t('Caspian Engineering &amp; Research', 'Caspian Engineering &amp; Research', 'Caspian Engineering &amp; Research') }}</p>
       </div>
 
       <div class="hero-right" ref="rightRef">

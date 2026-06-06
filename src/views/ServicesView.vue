@@ -62,7 +62,7 @@ const services = [
       { en: 'Declaration of industrial safety & process regulations', ru: 'Декларация промышленной безопасности и технологические регламенты', kz: 'Өнеркәсіптік қауіпсіздік декларациясы және технологиялық регламенттер' },
       { en: 'Associated petroleum gas development programs', ru: 'Программы развития и переработки ПНГ', kz: 'ІМГ дамыту және қайта өңдеу бағдарламалары' }
     ],
-    img: './images/services/projecting_program.jpg'
+    img: '/images/services/projecting_program.jpg'
   },
   {
     titleEn: 'Project Environmental Support',
@@ -108,7 +108,7 @@ const services = [
       { en: 'Support of construction, installation, and commissioning works', ru: 'Сопровождение СМР и пусконаладочных работ', kz: 'ҚМЖ және іске қосу-жөндеу жұмыстарын сүйемелдеу' },
       { en: 'Participation in facility acceptance commission', ru: 'Участие в Рабочей комиссии по приёмке объекта', kz: 'Нысанды қабылдау бойынша Жұмыс комиссиясының жұмысына қатысу' }
     ],
-    img: './images/team company.jpg'
+    img: '/images/team company.jpg'
   }
 ]
 </script>

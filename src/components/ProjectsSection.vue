@@ -133,7 +133,7 @@ const projects = [
     client: 'NCOC N.V.',
     locEn: 'Caspian Sea', locRu: 'Каспийское море', locKz: 'Каспий теңізі',
     duration: '2005 – 2018',
-    image: './images/objects/Месторождение Кашаган.jpg'
+    image: '/images/objects/Месторождение Кашаган.jpg'
   },
   {
     id: 'tengiz',
@@ -142,7 +142,7 @@ const projects = [
     client: 'TCO',
     locEn: 'Atyrau Region', locRu: 'Атырауская область', locKz: 'Атырау облысы',
     duration: '2008 – 2025',
-    image: './images/objects/Месторождение Тенгиз.jpg'
+    image: '/images/objects/Месторождение Тенгиз.jpg'
   },
   {
     id: 'cpc',
@@ -150,7 +150,7 @@ const projects = [
     subEn: 'Expansion Project', subRu: 'Расширение', subKz: 'Кеңейту',
     client: 'CPC', locEn: 'Kazakhstan / Russia', locRu: 'Казахстан / Россия', locKz: 'Қазақстан / Ресей',
     duration: '2006 – 2008',
-    image: './images/objects/КТК Атырау.webp'
+    image: '/images/objects/КТК Атырау.webp'
   }
 ]
 

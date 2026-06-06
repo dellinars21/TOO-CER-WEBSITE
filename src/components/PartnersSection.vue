@@ -31,7 +31,7 @@
       <div class="marquee-row" @mouseenter="paused = true" @mouseleave="paused = false">
         <div class="marquee-track" :class="{ paused }" :style="{ '--dur': row1Duration }">
           <div class="client-item" v-for="(item, i) in row1doubled" :key="`r1-${i}`" :title="item.name">
-            <img :src="`./images/${activeTab}/${item.file}`" :alt="item.name" class="client-logo" />
+            <img :src="`/images/${activeTab}/${item.file}`" :alt="item.name" class="client-logo" />
           </div>
         </div>
       </div>
@@ -40,7 +40,7 @@
       <div class="marquee-row" @mouseenter="paused = true" @mouseleave="paused = false">
         <div class="marquee-track track-rtl" :class="{ paused }" :style="{ '--dur': row2Duration }">
           <div class="client-item" v-for="(item, i) in row2doubled" :key="`r2-${i}`" :title="item.name">
-            <img :src="`./images/${activeTab}/${item.file}`" :alt="item.name" class="client-logo" />
+            <img :src="`/images/${activeTab}/${item.file}`" :alt="item.name" class="client-logo" />
           </div>
         </div>
       </div>
