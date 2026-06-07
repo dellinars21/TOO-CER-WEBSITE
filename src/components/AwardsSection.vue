@@ -114,6 +114,7 @@ let ctx
 // Combine awards + letters of gratitude into one carousel (first item prioritized).
 const items = [
   // Awards first — first item gets priority position on initial render
+  { file: 'altyn-sapa-2019.png',       nameEn: 'Altyn Sapa — Best Service Provider (2019)',                     nameRu: '«Алтын Сапа» — Лучший поставщик услуг (2019)',                                 nameKz: '«Алтын Сапа» — Үздік қызмет көрсетуші (2019)' },
   { file: 'award-gold-fgp-2025.jpg',   nameEn: 'Gold Award — FGP/WPMP Project (2025)',                          nameRu: 'Золотая награда — Проект ФРП/УУПД (2025)',                                     nameKz: 'Алтын марапат — ФРП/УУПД жобасы (2025)' },
   { file: 'award-altyn-sapa-2019.jpg', nameEn: 'Presidential Award "Altyn Sapa" — Best Service Company (2019)', nameRu: 'Премия Президента РК «Алтын Сапа» — Лучшее сервисное предприятие (2019)',     nameKz: 'ҚР Президентінің «Алтын Сапа» сыйлығы — Үздік қызмет ұйымы (2019)' },
   { file: 'diploma-kazstrin-2015.jpg', nameEn: 'Diploma from KazStrIn (2015)',                                  nameRu: 'Грамота от КазСтИн (2015)',                                                    nameKz: 'КазСтИн грамотасы (2015)' },

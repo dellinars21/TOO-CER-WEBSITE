@@ -10,7 +10,7 @@
             <div class="stat-primary-label">
               {{ t('12 Major Oil & Gas Fields', '12 Крупных нефтегазовых месторождений', '12 Ірі мұнай-газ кен орындары') }}
             </div>
-            <div class="stat-sub-label">Tengiz, Kashagan + 9</div>
+            <div class="stat-sub-label">Tengiz, Kashagan, Karachaganak, Northern Buzachi, Alibekmola Field, CPC Pipeline, + 5</div>
           </div>
           <RouterLink to="/portfolio" class="portfolio-btn">
             {{ t('Portfolio', 'Портфолио', 'Портфолио') }}
@@ -24,11 +24,8 @@
 
         <!-- Column 2: Mission -->
         <div class="stats-col stats-col--center">
-          <p class="mission-text">
-            {{ t('CE&R ', 'CE&R ', 'CE&R ') }}<em>{{ t('exists', 'создана', 'бар') }}</em>
-            {{ t('to solve the hardest ', 'для решения самых сложных ', 'ең күрделі ') }}<strong>{{ t('engineering challenges', 'инженерных задач', 'инженерлік міндеттерді') }}</strong>
-            {{ t(' in Kazakhstan\'s energy sector. With precision, integrity,', ' в нефтегазовом секторе Казахстана. С точностью, честностью', ' шешу үшін. Дәлдікпен, адалдықпен') }}
-            <strong>{{ t(' and at scale.', ' и в полном масштабе.', ' және кең ауқымда.') }}</strong>
+          <p class="mission-text" ref="missionRef">
+            <span class="typed-text" ref="typedRef"></span><span class="cursor" ref="cursorRef">|</span>
           </p>
           <div class="ceo-row">
             <div class="ceo-avatar">GD</div>
@@ -68,26 +65,109 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useLanguage } from '../composables/useLanguage.js'
-import { gsap, ease } from '../composables/useScrollAnimation.js'
+import { gsap, ScrollTrigger, ease } from '../composables/useScrollAnimation.js'
 
 const { t } = useLanguage()
 const sectionRef = ref(null)
+const typedRef   = ref(null)
+const cursorRef  = ref(null)
 let ctx
+let typeTimer = null
+
+// Segments: [text, tag] — tag can be null | 'em' | 'strong'
+const SEGMENTS = [
+  ["CE&R ", null],
+  ["exists", "em"],
+  [" to solve the hardest ", null],
+  ["engineering challenges", "strong"],
+  [" in Kazakhstan's energy sector. With precision, integrity,", null],
+  [" and at scale.", "strong"],
+]
+
+// Build flat char list: { char, openTag, closeTag }
+function buildChars() {
+  const chars = []
+  SEGMENTS.forEach(([text, tag]) => {
+    text.split('').forEach((ch, i) => {
+      chars.push({
+        char: ch,
+        openTag:  i === 0 && tag ? `<${tag}>` : '',
+        closeTag: i === text.length - 1 && tag ? `</${tag}>` : '',
+      })
+    })
+  })
+  return chars
+}
+
+// Human-like delay: faster on normal chars, pauses on punctuation, tiny bursts
+function charDelay(ch, next) {
+  const base = 28 + Math.random() * 30        // 28–58 ms base
+  if ('.!?'.includes(ch))  return base + 260 + Math.random() * 160
+  if (',;:'.includes(ch))  return base + 80  + Math.random() * 60
+  if (ch === ' ' && next && next !== ' ') return base + (Math.random() < 0.08 ? 140 : 0)
+  // occasional micro-pause mid-word (simulates hesitation)
+  if (Math.random() < 0.04) return base + 120 + Math.random() * 80
+  return base
+}
+
+function startTypewriter(chars) {
+  let i = 0
+  let html = ''
+
+  function typeNext() {
+    if (i >= chars.length) {
+      // blink cursor 3× then fade out
+      let blinks = 0
+      const blink = setInterval(() => {
+        cursorRef.value.style.opacity = cursorRef.value.style.opacity === '0' ? '1' : '0'
+        if (++blinks >= 6) {
+          clearInterval(blink)
+          cursorRef.value.style.transition = 'opacity 0.4s'
+          cursorRef.value.style.opacity = '0'
+        }
+      }, 400)
+      return
+    }
+
+    const { char, openTag, closeTag } = chars[i]
+    // Escape &, then restore intentional HTML tags
+    const safe = char === '&' ? '&amp;' : char
+    html += openTag + safe + closeTag
+    typedRef.value.innerHTML = html
+
+    i++
+    typeTimer = setTimeout(typeNext, charDelay(char, chars[i]?.char))
+  }
+
+  typeNext()
+}
 
 onMounted(() => {
+  const chars = buildChars()
+
   ctx = gsap.context(() => {
     gsap.from('.stats-panel', {
       opacity: 0, y: 40, duration: 0.9, ease: ease.out,
       scrollTrigger: { trigger: sectionRef.value, start: 'top 84%', once: true }
     })
-    gsap.from(['.stats-col--left', '.stats-col--center', '.stats-col--right'], {
+    gsap.from(['.stats-col--left', '.stats-col--right'], {
       opacity: 0, y: 24, duration: 0.7, stagger: 0.1, ease: ease.out,
       scrollTrigger: { trigger: sectionRef.value, start: 'top 82%', once: true }
+    })
+
+    ScrollTrigger.create({
+      trigger: sectionRef.value,
+      start: 'top 78%',
+      once: true,
+      onEnter: () => startTypewriter(chars),
     })
   }, sectionRef.value)
 })
 
-onUnmounted(() => ctx?.revert())
+onUnmounted(() => {
+  clearTimeout(typeTimer)
+  ctx?.revert()
+})
 </script>
 
 <style scoped>
@@ -199,10 +279,24 @@ onUnmounted(() => ctx?.revert())
   line-height: 1.5;
   color: var(--dark);
   flex: 1;
+  min-height: 4.5em; /* prevent layout shift while typing */
 }
 
 .mission-text em { font-style: italic; }
 .mission-text strong { font-weight: 700; }
+
+.cursor {
+  display: inline-block;
+  font-weight: 300;
+  color: var(--accent);
+  animation: blink-caret 0.65s step-end infinite;
+  margin-left: 1px;
+}
+
+@keyframes blink-caret {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
 
 /* CEO row */
 .ceo-row {

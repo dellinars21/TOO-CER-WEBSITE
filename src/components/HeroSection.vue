@@ -6,19 +6,19 @@
         alt="Offshore oil platform"
         class="hero-img"
         ref="imgRef"
-        :class="{ 'hero-img--hidden': videoReady }"
+        :class="{ 'hero-img--hidden': videoReady && !videoEnded, 'hero-img--fade-in': videoEnded }"
       />
       <video
         ref="videoRef"
         class="hero-video"
-        :class="{ 'hero-video--visible': videoReady }"
+        :class="{ 'hero-video--visible': videoReady && !videoEnded }"
         src="/images/hero_section_video.mp4"
         autoplay
         muted
-        loop
         playsinline
         preload="auto"
         @canplaythrough="onVideoReady"
+        @ended="onVideoEnded"
       />
       <div class="hero-overlay"></div>
     </div>
@@ -62,12 +62,21 @@ const imgRef   = ref(null)
 const videoRef = ref(null)
 const titleRef = ref(null)
 const rightRef = ref(null)
-const videoReady = ref(false)
+const videoReady  = ref(false)
+const videoEnded  = ref(false)
 let ctx
+let endedTimer = null
 
 function onVideoReady() {
   videoReady.value = true
   videoRef.value.playbackRate = 0.70
+}
+
+function onVideoEnded() {
+  // Hold the last video frame for 2s, then crossfade to the static image
+  endedTimer = setTimeout(() => {
+    videoEnded.value = true
+  }, 2000)
 }
 
 onMounted(() => {
@@ -143,7 +152,10 @@ onMounted(() => {
   }, heroRef.value)
 })
 
-onUnmounted(() => ctx?.revert())
+onUnmounted(() => {
+  clearTimeout(endedTimer)
+  ctx?.revert()
+})
 </script>
 
 <style scoped>
@@ -169,12 +181,18 @@ onUnmounted(() => ctx?.revert())
   height: 115%;          /* extra height for parallax travel */
   object-fit: cover;
   object-position: center 40%;
-  will-change: transform;
+  will-change: transform, opacity;
   transition: opacity 0.8s ease;
 }
 
 .hero-img--hidden {
   opacity: 0;
+}
+
+/* Smooth, slower fade-in after the video ends */
+.hero-img--fade-in {
+  opacity: 1;
+  transition: opacity 1.6s ease-in-out;
 }
 
 .hero-video {
@@ -184,9 +202,9 @@ onUnmounted(() => ctx?.revert())
   height: 115%;          /* matches img for parallax travel */
   object-fit: cover;
   object-position: center 40%;
-  will-change: transform;
+  will-change: transform, opacity;
   opacity: 0;
-  transition: opacity 0.8s ease;
+  transition: opacity 1.6s ease-in-out;
 }
 
 .hero-video--visible {

@@ -359,6 +359,7 @@ const rewardTabs = [
 
 const rewards = [
   // Awards
+  { tab: 'awards', file: 'altyn-sapa-2019.png',        nameEn: 'Altyn Sapa — Best Service Provider (2019)',                 nameRu: '«Алтын Сапа» — Лучший поставщик услуг (2019)',                                    nameKz: '«Алтын Сапа» — Үздік қызмет көрсетуші (2019)' },
   { tab: 'awards', file: 'award-gold-fgp-2025.jpg',    nameEn: 'Gold Award — FGP/WPMP Project (2025)',                      nameRu: 'Золотая награда — Проект ФРП/УУПД (2025)',                                        nameKz: 'Алтын марапат — ФРП/УУПД жобасы (2025)' },
   { tab: 'awards', file: 'award-altyn-sapa-2019.jpg',  nameEn: 'Presidential Award "Altyn Sapa" — Best Service Company (2019)', nameRu: 'Премия Президента РК «Алтын Сапа» — Лучшее сервисное предприятие (2019)',     nameKz: 'ҚР Президентінің «Алтын Сапа» сыйлығы — Үздік қызмет ұйымы (2019)' },
   { tab: 'awards', file: 'diploma-kazstrin-2015.jpg',  nameEn: 'Diploma from KazStrIn (2015)',                              nameRu: 'Грамота от КазСтИн (2015)',                                                        nameKz: 'КазСтИн грамотасы (2015)' },
@@ -802,7 +803,7 @@ const values = [
 
 .awards-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 16px;
 }
 
@@ -911,7 +912,6 @@ const values = [
 /* ── RESPONSIVE ─────────────────────────────────────────────────────────── */
 @media (max-width: 1200px) {
   .partners-grid  { grid-template-columns: repeat(6, 1fr); }
-  .awards-grid    { grid-template-columns: repeat(4, 1fr); }
   .doc-grid       { grid-template-columns: repeat(4, 1fr); }
 }
 
@@ -919,7 +919,6 @@ const values = [
   .cert-grid      { grid-template-columns: repeat(2, 1fr); }
   .values-grid    { grid-template-columns: repeat(2, 1fr); }
   .partners-grid  { grid-template-columns: repeat(4, 1fr); }
-  .awards-grid    { grid-template-columns: repeat(3, 1fr); }
   .doc-grid       { grid-template-columns: repeat(3, 1fr); }
   .section-header-row { flex-direction: column; gap: 12px; }
 }
@@ -929,7 +928,6 @@ const values = [
   .cert-grid         { grid-template-columns: 1fr 1fr; }
   .values-grid       { grid-template-columns: 1fr; }
   .partners-grid     { grid-template-columns: repeat(3, 1fr); }
-  .awards-grid       { grid-template-columns: repeat(2, 1fr); }
   .doc-grid          { grid-template-columns: repeat(2, 1fr); }
   .policy-grid       { grid-template-columns: 1fr 1fr; }
 }
@@ -937,6 +935,5 @@ const values = [
 @media (max-width: 480px) {
   .partners-grid  { grid-template-columns: repeat(2, 1fr); }
   .doc-grid       { grid-template-columns: repeat(2, 1fr); }
-  .awards-grid    { grid-template-columns: repeat(2, 1fr); }
 }
 </style>
