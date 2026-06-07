@@ -25,7 +25,7 @@
 
     <div class="container hero-content">
       <div class="hero-brand" ref="brandRef">
-        <h1 ref="titleRef">CER<sup>©</sup></h1>
+        <h1 ref="titleRef">CER<sup>*</sup></h1>
         <p class="hero-brand-sub">{{ t('Caspian Engineering &amp; Research', 'Caspian Engineering &amp; Research', 'Caspian Engineering &amp; Research') }}</p>
       </div>
 
@@ -37,14 +37,14 @@
             'Қазақстанның мұнай және газ секторындағы жетекші инжинирингтік және консалтингтік компаниялардың бірі — 2003 жылдан бастап жобалау, экологиялық сүйемелдеу және консалтингтік қызметтерді ұсынады.'
           ) }}
         </p>
-        <RouterLink to="/about" class="btn-hero">
-          {{ t('Get in Touch', 'Связаться', 'Байланыс') }}
-          <span class="arrow-icon">
+        <button type="button" class="btn-hero btn-hero--continue" @click="scrollDown">
+          {{ t('Continue', 'Продолжить', 'Жалғастыру') }}
+          <span class="arrow-icon arrow-icon--down" aria-hidden="true">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M8 3V13M8 13L3 8M8 13L13 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </span>
-        </RouterLink>
+        </button>
       </div>
     </div>
   </section>
@@ -70,6 +70,14 @@ let endedTimer = null
 function onVideoReady() {
   videoReady.value = true
   videoRef.value.playbackRate = 0.70
+}
+
+function scrollDown() {
+  const target = heroRef.value?.nextElementSibling
+  const top = target
+    ? target.getBoundingClientRect().top + window.scrollY
+    : window.innerHeight
+  window.scrollTo({ top, behavior: 'smooth' })
 }
 
 function onVideoEnded() {
@@ -303,6 +311,43 @@ onUnmounted(() => {
 
 .btn-hero:hover .arrow-icon {
   transform: rotate(45deg) scale(1.1);
+}
+
+.btn-hero--continue {
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  animation: hero-cue-blink 2.2s ease-in-out infinite;
+}
+
+.btn-hero--continue:hover {
+  animation-play-state: paused;
+}
+
+.arrow-icon--down {
+  animation: hero-cue-bounce 2.2s ease-in-out infinite;
+}
+
+.btn-hero--continue:hover .arrow-icon--down {
+  transform: translateY(2px) scale(1.1);
+  animation-play-state: paused;
+}
+
+@keyframes hero-cue-blink {
+  0%, 100% { opacity: 0.78; }
+  50%      { opacity: 1; }
+}
+
+@keyframes hero-cue-bounce {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(3px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-hero--continue,
+  .arrow-icon--down {
+    animation: none;
+  }
 }
 
 @media (max-width: 768px) {

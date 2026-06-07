@@ -63,31 +63,52 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, watch } from 'vue'
 import { useLanguage } from '../composables/useLanguage.js'
 import { gsap, ScrollTrigger, ease } from '../composables/useScrollAnimation.js'
 
-const { t } = useLanguage()
+const { t, currentLang } = useLanguage()
 const sectionRef = ref(null)
 const typedRef   = ref(null)
 const cursorRef  = ref(null)
 let ctx
 let typeTimer = null
+let blinkTimer = null
+let hasStarted = false
 
-// Segments: [text, tag] — tag can be null | 'em' | 'strong'
-const SEGMENTS = [
-  ["CE&R ", null],
-  ["exists", "em"],
-  [" to solve the hardest ", null],
-  ["engineering challenges", "strong"],
-  [" in Kazakhstan's energy sector. With precision, integrity,", null],
-  [" and at scale.", "strong"],
-]
+// Segments per language: [text, tag] — tag can be null | 'em' | 'strong'
+const SEGMENTS_BY_LANG = {
+  en: [
+    ["CE&R ", null],
+    ["exists", "em"],
+    [" to solve the hardest ", null],
+    ["engineering challenges", "strong"],
+    [" in Kazakhstan's energy sector. With precision, integrity,", null],
+    [" and at scale.", "strong"],
+  ],
+  ru: [
+    ["CE&R ", null],
+    ["существует", "em"],
+    [", чтобы решать сложнейшие ", null],
+    ["инженерные задачи", "strong"],
+    [" в энергетическом секторе Казахстана. С точностью, честностью", null],
+    [" и в большом масштабе.", "strong"],
+  ],
+  kz: [
+    ["CE&R ", null],
+    ["құрылды", "em"],
+    [" — Қазақстанның энергетика саласындағы ең күрделі ", null],
+    ["инженерлік міндеттерді", "strong"],
+    [" шешу үшін. Дәлдікпен, адалдықпен", null],
+    [" және ауқымды деңгейде.", "strong"],
+  ],
+}
 
 // Build flat char list: { char, openTag, closeTag }
 function buildChars() {
+  const segments = SEGMENTS_BY_LANG[currentLang.value] || SEGMENTS_BY_LANG.en
   const chars = []
-  SEGMENTS.forEach(([text, tag]) => {
+  segments.forEach(([text, tag]) => {
     text.split('').forEach((ch, i) => {
       chars.push({
         char: ch,
@@ -114,14 +135,21 @@ function startTypewriter(chars) {
   let i = 0
   let html = ''
 
+  // Reset cursor visibility in case a previous run faded it out
+  if (cursorRef.value) {
+    cursorRef.value.style.transition = ''
+    cursorRef.value.style.opacity = '1'
+  }
+
   function typeNext() {
     if (i >= chars.length) {
       // blink cursor 3× then fade out
       let blinks = 0
-      const blink = setInterval(() => {
+      blinkTimer = setInterval(() => {
         cursorRef.value.style.opacity = cursorRef.value.style.opacity === '0' ? '1' : '0'
         if (++blinks >= 6) {
-          clearInterval(blink)
+          clearInterval(blinkTimer)
+          blinkTimer = null
           cursorRef.value.style.transition = 'opacity 0.4s'
           cursorRef.value.style.opacity = '0'
         }
@@ -142,9 +170,17 @@ function startTypewriter(chars) {
   typeNext()
 }
 
-onMounted(() => {
-  const chars = buildChars()
+function runTypewriter() {
+  clearTimeout(typeTimer)
+  if (blinkTimer) {
+    clearInterval(blinkTimer)
+    blinkTimer = null
+  }
+  if (typedRef.value) typedRef.value.innerHTML = ''
+  startTypewriter(buildChars())
+}
 
+onMounted(() => {
   ctx = gsap.context(() => {
     gsap.from('.stats-panel', {
       opacity: 0, y: 40, duration: 0.9, ease: ease.out,
@@ -159,13 +195,22 @@ onMounted(() => {
       trigger: sectionRef.value,
       start: 'top 78%',
       once: true,
-      onEnter: () => startTypewriter(chars),
+      onEnter: () => {
+        hasStarted = true
+        runTypewriter()
+      },
     })
   }, sectionRef.value)
 })
 
+// Restart the animation in the new language when the user switches language
+watch(currentLang, () => {
+  if (hasStarted) runTypewriter()
+})
+
 onUnmounted(() => {
   clearTimeout(typeTimer)
+  if (blinkTimer) clearInterval(blinkTimer)
   ctx?.revert()
 })
 </script>
